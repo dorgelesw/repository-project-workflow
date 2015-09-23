@@ -1,0 +1,53 @@
+﻿@model IEnumerable<p7cSarlWF.Models.Ressource>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>RessourceList</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TypeRessource.TypeDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RessourceDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RessourceName)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TypeRessource.TypeDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RessourceDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RessourceName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.RessourceID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.RessourceID }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.RessourceID })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

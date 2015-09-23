@@ -1,0 +1,53 @@
+﻿@model IEnumerable<p7cSarlWF.Models.TypeRessource>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <title>TypeList</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "CreateType")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TypeDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TypeName)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TypeDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TypeName)
+            </td>
+            <td>
+                @Html.ActionLink("Ressources", "RessourceList", new { id = item.TypeRessourceID }) |
+                @Html.ActionLink("Edit", "Edit", new { id=item.TypeRessourceID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.TypeRessourceID }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.TypeRessourceID })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>
+
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/jquery-2.1.4.min.js"></script>
