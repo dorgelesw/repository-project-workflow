@@ -43,6 +43,9 @@ namespace p7cSarlWF.Models
         [DataType(DataType.Text)]
         public string taille { get; set; }
 
+        public int ContentLength { get; set; }
+        public string ContentType { get; set; }
+
         public int UtilisateurID{set; get;}
 
         public int RessourceID { get; set; }

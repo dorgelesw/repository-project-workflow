@@ -1,0 +1,72 @@
+﻿@model p7cSarlWF.Models.TypeRessource
+@{
+    var utilisateurs = (List<p7cSarlWF.Models.Utilisateur>)ViewBag.Utilisateurs;
+}
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>EditType</title>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        
+        <div class="form-horizontal">
+            <h4>TypeRessource</h4>
+            <hr />
+            @Html.ValidationSummary(true)
+            @Html.HiddenFor(model => model.TypeRessourceID)
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.TypeDescription, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.TypeDescription)
+                    @Html.ValidationMessageFor(model => model.TypeDescription)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.TypeName, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.TypeName)
+                    @Html.ValidationMessageFor(model => model.TypeName)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.CreatedBy, "CreatedBy", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.ValidationMessageFor(model => model.CreatedBy)
+                    @Html.DropDownListFor(model => model.CreatedBy, new SelectList(@utilisateurs, "UtilisateurID", "FirstName", "Choisir l'utilisateur"), new { @class = "form-control" })
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.CreatedDate, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CreatedDate)
+                    @Html.ValidationMessageFor(model => model.CreatedDate)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+    
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</body>
+</html>

@@ -16,5 +16,13 @@ namespace p7cSarlWF.Models.Repository
         List<Ressource> GetAllRessourcesByType(int TypeRessourceID);
 
         TypeRessource SaveTypeRessource(TypeRessource type);
+
+        TypeRessource GetTypeRessourceByID(int TypeRessourceID);
+
+        Ressource SaveRessource(Ressource Ressource);
+
+        Ressource GetRessourceByID(int id);
+
+        void SaveFichier(Fichier fichier);
     }
 }

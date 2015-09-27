@@ -44,6 +44,9 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Humanizer">
+      <HintPath>..\packages\Humanizer.1.37.7\lib\portable-win+net40+sl50+wp8+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Humanizer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -186,12 +189,14 @@
     <Compile Include="Models\Service\IProjectManager.cs" />
     <Compile Include="Models\Service\IRessourceManager.cs" />
     <Compile Include="Models\Service\IUtilisateurManager.cs" />
+    <Compile Include="Models\Service\P7CUtils.cs" />
     <Compile Include="Models\Service\ProjectManager.cs" />
     <Compile Include="Models\Service\RessourceManager.cs" />
     <Compile Include="Models\Service\UtilisateurManager.cs" />
     <Compile Include="Models\TypeRessource.cs" />
     <Compile Include="Models\Utilisateur.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\RessourceFichier.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config">
@@ -204,6 +209,10 @@
     <Content Include="Views\Ressource\TypeList.cshtml" />
     <Content Include="Views\Ressource\RessourceList.cshtml" />
     <Content Include="Views\Ressource\CreateType.cshtml" />
+    <Content Include="Views\Ressource\EditType.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Ressource\Create.cshtml" />
+    <Content Include="Views\Ressource\UploadRessourceFiles.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -213,7 +222,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Viewmodels\" />
     <Folder Include="Views\Project\" />
     <Folder Include="Views\Utilisateur\" />
   </ItemGroup>

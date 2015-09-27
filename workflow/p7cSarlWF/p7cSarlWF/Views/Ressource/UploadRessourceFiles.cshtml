@@ -1,0 +1,30 @@
+﻿@model p7cSarlWF.ViewModels.RessourceFichier
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>UploadRessourceFiles</title>
+</head>
+<body>
+    <div> 
+        <form action="" method="post" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true);
+                        
+            <div>
+                @Html.LabelFor(model => model.ImageUpload)
+                @Html.TextBoxFor(model => model.ImageUpload, new { type = "file" })
+            </div>
+            @Html.HiddenFor(model => model.RessourceID)
+            <button type="submit">Upload Files</button>
+        </form>
+
+    </div>
+</body>
+</html>

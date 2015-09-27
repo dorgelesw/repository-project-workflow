@@ -1,6 +1,7 @@
 ﻿using p7cSarlWF.Models.Context;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -40,25 +41,58 @@ namespace p7cSarlWF.Models.Repository
         {
            
             WorkFlowContext ctx = new WorkFlowContext();
-            Utilisateur user = ctx.Utilisateurs.Find(type.CreatedBy);
-            type.Utilisateur = user;
+
+            if (type.TypeRessourceID == 0)
+            {
+                Utilisateur user = ctx.Utilisateurs.Find(type.CreatedBy);
+                type.Utilisateur = user;
+
+                type = ctx.TypeRessources.Add(type);
+                ctx.SaveChanges();
+                type = ctx.TypeRessources.Find(type.TypeRessourceID);
+                Console.WriteLine(type);
+                return type;
+            }
+            else
+            {
+                ctx.Entry(type).State = EntityState.Modified;
+                ctx.SaveChanges();
+                type = ctx.TypeRessources.Find(type.TypeRessourceID);
+                Console.WriteLine(type);
+                return type;
+            }
+
             
-            type = ctx.TypeRessources.Add(type);
-            ctx.SaveChanges();
-            type = ctx.TypeRessources.Find(type.TypeRessourceID);
-            
-            return type;
         }
 
 
+        public TypeRessource GetTypeRessourceByID(int TypeRessourceID)
+        {
+            return context.TypeRessources.Find(TypeRessourceID);
+        }
 
 
+        public Ressource SaveRessource(Ressource Ressource)
+        {
+            WorkFlowContext ctx = new WorkFlowContext();
+            Ressource = ctx.Ressources.Add(Ressource);
+            ctx.SaveChanges();
+
+            return Ressource;
+        }
 
 
+        public Ressource GetRessourceByID(int id)
+        {
+            WorkFlowContext ctx = new WorkFlowContext();
+            return ctx.Ressources.Find(id);
+        }
 
-
-
-
-
+        public void SaveFichier(Fichier fichier)
+        {
+            WorkFlowContext ctx = new WorkFlowContext();
+            return ctx.Fichiers.Add(fichier);
+            ctx.SaveChanges();
+        }
     }
 }

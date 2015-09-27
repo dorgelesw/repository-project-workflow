@@ -38,7 +38,7 @@
             </td>
             <td>
                 @Html.ActionLink("Ressources", "RessourceList", new { id = item.TypeRessourceID }) |
-                @Html.ActionLink("Edit", "Edit", new { id=item.TypeRessourceID }) |
+                @Html.ActionLink("Edit", "EditType", new { TypeRessourceID = item.TypeRessourceID }) |
                 @Html.ActionLink("Details", "Details", new { id=item.TypeRessourceID }) |
                 @Html.ActionLink("Delete", "Delete", new { id=item.TypeRessourceID })
             </td>

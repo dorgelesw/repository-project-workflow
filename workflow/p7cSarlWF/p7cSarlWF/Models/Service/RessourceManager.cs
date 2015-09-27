@@ -9,6 +9,13 @@ namespace p7cSarlWF.Models.Service
 {
     public class RessourceManager : IRessourceManager
     {
+
+        public RessourceManager()
+        {//injection de la dépendance
+            Repository = (IRessourceRepository)GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(IRessourceRepository));
+
+        }
+
         private IRessourceRepository Repository { get; set; }
 
         public List<TypeRessource> GetAllTypesRessources()
@@ -36,12 +43,29 @@ namespace p7cSarlWF.Models.Service
         {
             return Repository.SaveTypeRessource(type);
         }
-        
 
-        public RessourceManager()
-        {//injection de la dépendance
-            Repository = (IRessourceRepository)GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(IRessourceRepository));
+        public TypeRessource GetTypeRessourceByID(int TypeRessourceID)
+        {
+            return Repository.GetTypeRessourceByID(TypeRessourceID);
+        }
 
+
+
+
+        public Ressource SaveRessource(Ressource Ressource)
+        {
+            return Repository.SaveRessource(Ressource);
+        }
+
+
+        public Ressource GetRessourceByID(int id)
+        {
+            return Repository.GetRessourceByID(id);
+        }
+
+        public void SaveFichier(Fichier fichier)
+        {
+            Repository.SaveFichier(fichier);
         }
     }
 }

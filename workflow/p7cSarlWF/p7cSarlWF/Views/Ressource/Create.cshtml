@@ -1,0 +1,77 @@
+﻿@model p7cSarlWF.Models.Ressource
+@{
+    var TypesRessources = (List<p7cSarlWF.Models.TypeRessource>)ViewBag.TypesRessources;
+}
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <title>Create</title>
+</head>
+<body>
+    @using (Html.BeginForm(new {enctype = "multipart/form-data"})) 
+    {
+        @Html.AntiForgeryToken()
+        
+        <div class="form-horizontal">
+            <h4>Ressource</h4>
+            <hr />
+            @Html.ValidationSummary(true)
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.RessourceDescription, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.RessourceDescription, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.RessourceDescription)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.RessourceName, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.RessourceName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.RessourceName)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.TypeRessourceID, "TypeRessourceID", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.TypeRessourceID, new SelectList(@TypesRessources, "TypeRessourceID", "TypeName"), new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.TypeRessourceID)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.Label("Associer des fichiers", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="file" id="Fichiers" name="Fichiers" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+    
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</body>
+</html>
+<script src="~/Scripts/jquery-2.1.4.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/underscore.js"></script>
+<script src="~/Scripts/backbone.js"></script>
+<script src="~/Scripts/knockout-3.3.0.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
