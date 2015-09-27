@@ -25,7 +25,7 @@ namespace p7cSarlWF.Models
         public string ActivationCode { get; set; }
 
         [Required]
-        [DisplayName("Salutation")]
+        [DisplayName("Mr, Mme, Mlle")]
         [DataType(DataType.Text)]
         public string Civilite { get; set; }
 

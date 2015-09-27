@@ -38,6 +38,10 @@ namespace p7cSarlWF.Models.Infrastructure
             {
                 return new RessourceManager();
             }
+            else if (serviceType == typeof(IClientManager))
+            {
+                return new ClientManager();
+            }
             else{
                 return null;
             }

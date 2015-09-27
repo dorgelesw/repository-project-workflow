@@ -11,7 +11,7 @@ namespace p7cSarlWF.Models.Repository
      * */
     public class UtilisateurRepository : IUtilisateurRepository
     {
-        private static WorkFlowContext context
+        private WorkFlowContext context
         {
             get { return new WorkFlowContext(); }
         }
@@ -19,6 +19,19 @@ namespace p7cSarlWF.Models.Repository
         public List<Utilisateur> GetListeAllUtilisateur()
         {
             return context.Utilisateurs.ToList();
+        }
+
+        public List<Client> GetListeAllClient()
+        {
+            return context.Clients.ToList();
+        }
+
+        public Client saveClient(Client client)
+        {
+           WorkFlowContext context = new WorkFlowContext();
+          context.Clients.Add(client);
+          context.SaveChanges();
+           return client;
         }
 
     }

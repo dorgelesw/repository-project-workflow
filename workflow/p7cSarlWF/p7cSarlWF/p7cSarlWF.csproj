@@ -165,6 +165,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\Api\ProjectsController.cs" />
     <Compile Include="Controllers\Api\RessourcesController.cs" />
+    <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\RessourceController.cs" />
@@ -186,6 +187,8 @@
     <Compile Include="Models\Repository\RessourceRepository.cs" />
     <Compile Include="Models\Repository\UtilisateurRepository.cs" />
     <Compile Include="Models\Ressource.cs" />
+    <Compile Include="Models\Service\ClientManager.cs" />
+    <Compile Include="Models\Service\IClientManager.cs" />
     <Compile Include="Models\Service\IProjectManager.cs" />
     <Compile Include="Models\Service\IRessourceManager.cs" />
     <Compile Include="Models\Service\IUtilisateurManager.cs" />
@@ -213,6 +216,8 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Ressource\Create.cshtml" />
     <Content Include="Views\Ressource\UploadRessourceFiles.cshtml" />
+    <Content Include="Views\Client\ClientList.cshtml" />
+    <Content Include="Views\Client\CreateClient.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
