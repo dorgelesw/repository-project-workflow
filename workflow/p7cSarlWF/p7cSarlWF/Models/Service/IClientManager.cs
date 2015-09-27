@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace p7cSarlWF.Models.Repository
+namespace p7cSarlWF.Models.Service
 {
-    interface IUtilisateurRepository
+    public interface IClientManager
     {
-        List<Utilisateur> GetListeAllUtilisateur();
-
         List<Client> GetListeAllClient();
 
         Client saveClient(Client client);

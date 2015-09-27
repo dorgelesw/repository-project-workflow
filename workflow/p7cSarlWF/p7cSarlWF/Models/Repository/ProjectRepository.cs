@@ -11,7 +11,7 @@ namespace p7cSarlWF.Models.Repository
      * */
     public class ProjectRepository : IProjectRepository
     {
-        private static WorkFlowContext context
+        private WorkFlowContext context
         {
             get { return new WorkFlowContext(); }
         }

@@ -8,6 +8,13 @@ namespace p7cSarlWF.Models.Context
 {
     public class WorkFlowContext : DbContext
     {
+        public WorkFlowContext()
+            : base("P7CWorkflowFDB")
+        {
+            //this.Configuration.ValidateOnSaveEnabled = false; //mysql
+            Database.SetInitializer<WorkFlowContext>(new WorkFlowContextInitializer());
+        }
+
         public DbSet<Utilisateur> Utilisateurs { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<Project> Projects { get; set; }
