@@ -115,7 +115,7 @@ namespace p7cSarlWF.Controllers
                         OriginalFileName = System.IO.Path.GetFileName(Fichiers.FileName),
                         ContentLength = Fichiers.ContentLength,
                         ContentType = Fichiers.ContentType,
-                        UtilisateurID = 1
+                        UploadedBy = 1
                     };
                     fichier.Md5Name = P7CUtils.CalculateMD5Hash(Guid.NewGuid().ToString()+fichier.OriginalFileName) + System.IO.Path.GetExtension(fichier.OriginalFileName);
                     fichier.CheminDisque = "~/App_Data/" + type.TypeName + "/" + Ressource.RessourceName + "/" + fichier.Md5Name;
@@ -168,7 +168,11 @@ namespace p7cSarlWF.Controllers
                     OriginalFileName = System.IO.Path.GetFileName(Fichiers.FileName),
                     ContentLength = Fichiers.ContentLength,
                     ContentType = Fichiers.ContentType,
-                    UtilisateurID = 1
+                    UploadedBy = 1,
+                    RessourceID = Ressource.RessourceID,
+                    Uplaoded_at = DateTime.Now,
+                    Updated_at = DateTime.Now,
+                    Deleted_at = DateTime.Now,
                 };
                 fichier.Md5Name = P7CUtils.CalculateMD5Hash(Guid.NewGuid().ToString() + fichier.OriginalFileName) + System.IO.Path.GetExtension(fichier.OriginalFileName);
                 fichier.CheminDisque = "~/App_Data/";// +type.TypeName + "/" + Ressource.RessourceName;
@@ -176,8 +180,9 @@ namespace p7cSarlWF.Controllers
                 var imagePath = Path.Combine(Server.MapPath(fichier.CheminDisque), fichier.Md5Name);
                 
                 Fichiers.SaveAs(imagePath);
-                fichier.Ressource = Ressource;
-
+                //fichier.Ressource = Ressource;
+                
+                
                 RessourceManager.SaveFichier(fichier);
                 //Ressource.Fichiers = new List<Fichier>();
                 //Ressource.Fichiers.Add(fichier);

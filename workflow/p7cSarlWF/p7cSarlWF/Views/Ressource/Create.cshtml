@@ -16,6 +16,27 @@
     <title>Create</title>
 </head>
 <body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="@Url.Action("Index", "Project", null)">Projets</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="@Url.Action("TypeList", "Ressource", null)">Types Ressources</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="@Url.Action("Index", "Client", null)">Clients</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="@Url.Action("Index", "Utilisateur", null)">Utilisateurs</a></li>
+                            <li role="separator" class="divider"></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
     @using (Html.BeginForm(new {enctype = "multipart/form-data"})) 
     {
         @Html.AntiForgeryToken()
@@ -70,8 +91,8 @@
 </body>
 </html>
 <script src="~/Scripts/jquery-2.1.4.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
 <script src="~/Scripts/jquery.validate.js"></script>
 <script src="~/Scripts/underscore.js"></script>
 <script src="~/Scripts/backbone.js"></script>
 <script src="~/Scripts/knockout-3.3.0.js"></script>
-<script src="~/Scripts/bootstrap.js"></script>

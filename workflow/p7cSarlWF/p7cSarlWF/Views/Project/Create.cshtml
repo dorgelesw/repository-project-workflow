@@ -1,0 +1,245 @@
+﻿@model p7cSarlWF.Models.Project
+@{
+    var utilisateurs = (List<p7cSarlWF.Models.Utilisateur>)ViewBag.Utilisateurs;
+    var projets = (List<p7cSarlWF.Models.Project>)ViewBag.Projects;
+    var clients = (List<p7cSarlWF.Models.Client>)ViewBag.Clients;
+}
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <title>Create</title>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="@Url.Action("Index", "Project", null)">Projets</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="@Url.Action("TypeList", "Ressource", null)">Types Ressources</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="@Url.Action("Index", "Client", null)">Clients</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="@Url.Action("Index", "Utilisateur", null)">Utilisateurs</a></li>
+                            <li role="separator" class="divider"></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    @using (Html.BeginForm()) 
+    {
+        @Html.AntiForgeryToken()
+        
+        <div class="form-horizontal">
+            <h4>Project</h4>
+            <hr />
+            @Html.ValidationSummary(true)
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.ColorIdentifier, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ColorIdentifier)<span class="glyphicon glyphicon-calendar" id="ChoixCouleur"></span>
+                    @Html.ValidationMessageFor(model => model.ColorIdentifier)
+                </div>                
+            </div>
+            <div id="Colors" class="col-lg-12"></div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ParentID, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @*@Html.EditorFor(model => model.ParentID)*@
+                    @Html.DropDownListFor(model => model.ParentID, new SelectList(@projets, "ProjectID", "ProjectShortName", "Choose Project"), new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ParentID)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.PriorityID, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.PriorityID)
+                    @Html.ValidationMessageFor(model => model.PriorityID)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.StartDate, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.StartDate)<span class="glyphicon glyphicon-calendar"></span>                                        
+                    @Html.ValidationMessageFor(model => model.StartDate)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.EndDate, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.EndDate)<span class="glyphicon glyphicon-calendar"></span>
+                    @Html.ValidationMessageFor(model => model.EndDate)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.Projectlocation, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Projectlocation)
+                    @Html.ValidationMessageFor(model => model.Projectlocation)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProjectBudget, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ProjectBudget)
+                    @Html.ValidationMessageFor(model => model.ProjectBudget)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProjectDescription, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ProjectDescription, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ProjectDescription)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProjectFullName, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ProjectFullName)
+                    @Html.ValidationMessageFor(model => model.ProjectFullName)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProjectShortName, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ProjectShortName)
+                    @Html.ValidationMessageFor(model => model.ProjectShortName)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProjectManager, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @*@Html.EditorFor(model => model.ProjectManager)*@
+                    @Html.DropDownListFor(model => model.ProjectManager, new SelectList(@utilisateurs, "UtilisateurID", "FirstName", "Choose Project Manager"), new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ProjectManager)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProjectResponsible, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @*@Html.EditorFor(model => model.ProjectResponsible)*@
+                    @Html.DropDownListFor(model => model.ProjectResponsible, new SelectList(@utilisateurs, "UtilisateurID", "FirstName", "Choose Project Responsible"), new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ProjectResponsible)
+                </div>
+            </div>
+                            
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProjectUrl, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ProjectUrl)
+                    @Html.ValidationMessageFor(model => model.ProjectUrl)
+                </div>
+            </div>
+                
+            <div class="form-group">
+                @Html.LabelFor(model => model.ClientID, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @*@Html.EditorFor(model => model.ClientID)*@
+                    @Html.DropDownListFor(model => model.ClientID, new SelectList(@clients, "UtilisateurID", "FirstName", "Choose Client"), new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ClientID)
+                </div>
+            </div>
+    
+            
+            @Html.HiddenFor(model => model.ProjectCreator, new { @Value = "1" })
+    
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+    
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</body>
+</html>
+<script src="~/Scripts/jquery-2.1.4.min.js"></script>
+<script src="~/Scripts/moment.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        
+        $('#StartDate').datetimepicker({
+            format: 'd/MM/YYYY',
+            icons: {
+                date: "glyphicon glyphicon-calendar",
+                up: "glyphicon glyphicon-arrow-up",
+                down: "glyphicon glyphicon-arrow-down"
+            }
+        });
+        $('#EndDate').datetimepicker({
+            useCurrent: false, //Important! See issue #1075
+            format: 'd/MM/YYYY',
+            icons: {
+                date: "glyphicon glyphicon-calendar",
+                up: "glyphicon glyphicon-arrow-up",
+                down: "glyphicon glyphicon-arrow-down"
+            }
+        });
+        $("#StartDate").on("dp.change", function (e) {
+            $('#EndDate').data("DateTimePicker").minDate(e.date);
+        });
+        $("#EndDate").on("dp.change", function (e) {
+            $('#StartDate').data("DateTimePicker").maxDate(e.date);
+        });
+
+
+    });
+</script>
+
+<script language="javascript" type="text/javascript">
+    $(function () {
+        $("#Colors").hide();
+        $("#ColorIdentifier").attr("readonly", true);
+        $("#ChoixCouleur").click(function () {
+            var html = $("#Colors").html();
+            if (html.trim() == '') {
+                $.get("http://localhost:6650/api/Colors", null, function (data) {
+                    $("#Colors").html(data);
+                });
+                $(document).on('click', 'td', function () {
+                    $("#ColorIdentifier").val($(this).attr("bgcolor"));
+                    $("#Colors").toggle();
+                });
+
+                $(document).on('mouseover', 'td', function () {
+                    $("#ColorIdentifier").css("background-color", $(this).css("background-color"));
+                    $(this).css("cursor", "pointer");
+                });
+            }            
+            $("#Colors").toggle();
+        });
+        
+    });
+</script>  

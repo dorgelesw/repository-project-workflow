@@ -11,12 +11,30 @@ namespace p7cSarlWF.Models.Repository
      * */
     public class ProjectRepository : IProjectRepository
     {
-        private WorkFlowContext context
+        
+        public List<Project> GetAllProjects()
         {
-            get { return new WorkFlowContext(); }
+            WorkFlowContext context = new WorkFlowContext();
+            return context.Projects.ToList();
         }
 
+        public Project GetProjectByID(int ProjectID)
+        {
+            
+            WorkFlowContext context = new WorkFlowContext();
+            Project Project = context.Projects.Find(ProjectID);            
+            Project.ProjectRessources = context.ProjectRessources.Where(pr => pr.ProjectID==ProjectID).ToList();
+            return Project;
 
+        }
 
+        public Project SaveProject(Project Project)
+        {
+            WorkFlowContext context = new WorkFlowContext();
+            Project = context.Projects.Add(Project);
+            context.SaveChanges();
+
+            return Project;
+        }
     }
 }

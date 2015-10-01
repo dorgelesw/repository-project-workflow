@@ -25,5 +25,6 @@ namespace p7cSarlWF.Models.Context
         public DbSet<Fichier> Fichiers { get; set; }
         public DbSet<TypeRessource> TypeRessources { get; set; }
         public DbSet<Ressource> Ressources { get; set; }
+        public DbSet<ProjectRessource> ProjectRessources { get; set; }
     }
 }

@@ -91,8 +91,10 @@ namespace p7cSarlWF.Models.Repository
         public void SaveFichier(Fichier fichier)
         {
             WorkFlowContext ctx = new WorkFlowContext();
-            return ctx.Fichiers.Add(fichier);
+            ctx.Fichiers.Add(fichier);
             ctx.SaveChanges();
+            
+            
         }
     }
 }

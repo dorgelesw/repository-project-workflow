@@ -12,11 +12,20 @@ namespace p7cSarlWF.Models.Service
         private IProjectRepository Repository { get; set; }
 
 
+        public List<Project> GetAllProjects()
+        {
+            return Repository.GetAllProjects();
+        }
 
+        public Project SaveProject(Project Project)
+        {
+            return Repository.SaveProject(Project);
+        }
 
-
-
-
+        public Project GetProjectByID(int ProjectID)
+        {
+            return Repository.GetProjectByID(ProjectID);
+        }
 
 
 

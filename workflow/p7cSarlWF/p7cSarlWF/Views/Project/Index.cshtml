@@ -1,0 +1,193 @@
+﻿@model IEnumerable<p7cSarlWF.Models.Project>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <title>Index</title>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="@Url.Action("Index", "Project", null)">Projets</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="@Url.Action("TypeList", "Ressource", null)">Types Ressources</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="@Url.Action("Index", "Client", null)">Clients</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="@Url.Action("Index", "Utilisateur", null)">Utilisateurs</a></li>
+                            <li role="separator" class="divider"></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table datatable">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ColorIdentifier)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ParentID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PriorityID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedAt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeletedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Projectlocation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectBudget)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectFullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectShortName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectManager)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectResponsible)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectPercentComplete)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TaskCount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpdatedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpdatedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClientID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectCreator)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td bgcolor="@item.ColorIdentifier">
+                @*@Html.DisplayFor(modelItem => item.ColorIdentifier)*@
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ParentID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PriorityID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeletedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Projectlocation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectBudget)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectFullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectShortName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectManager)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectResponsible)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectPercentComplete)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectUrl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaskCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdatedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdatedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClientID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectCreator)
+            </td>
+            <td>
+                @Html.ActionLink("Ressources", "Ressources", new { id = item.ProjectID })
+                @*@Html.ActionLink("Edit", "Edit", new { id=item.ProjectID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.ProjectID }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.ProjectID })*@
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>
+<script src="~/Scripts/jquery-2.1.4.min.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>

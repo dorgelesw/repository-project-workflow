@@ -26,5 +26,8 @@ namespace p7cSarlWF.Models
         public int TypeRessourceID { get; set; }
         public virtual TypeRessource TypeRessource { get; set; }
         public virtual List<Fichier> Fichiers { get; set; }
+
+        //une ressource peut être associée à plusieurs projet
+        public virtual List<ProjectRessource> ProjectRessources { get; set; }
     }
 }

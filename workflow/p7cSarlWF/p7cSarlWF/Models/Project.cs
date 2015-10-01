@@ -106,5 +106,7 @@ namespace p7cSarlWF.Models
          * Il s'agit ici des utilisateurs associés au projet
          * */
         public virtual List<Utilisateur> Utilisateurs { get; set; }
+        //les ressources qui sont affectées au projet
+        public virtual List<ProjectRessource> ProjectRessources { get; set; }
     }
 }

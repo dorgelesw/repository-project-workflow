@@ -46,7 +46,7 @@ namespace p7cSarlWF.Models
         public int ContentLength { get; set; }
         public string ContentType { get; set; }
 
-        public int UtilisateurID{set; get;}
+        public int UploadedBy{set; get;}
 
         public int RessourceID { get; set; }
         public virtual Ressource Ressource { get; set; }

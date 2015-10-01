@@ -1,0 +1,141 @@
+﻿@model IEnumerable<p7cSarlWF.Models.Utilisateur>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <title>Index</title>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="@Url.Action("Index", "Project", null)">Projets</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="@Url.Action("TypeList", "Ressource", null)">Types Ressources</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="@Url.Action("Index", "Client", null)">Clients</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="@Url.Action("Index", "Utilisateur", null)">Utilisateurs</a></li>
+                            <li role="separator" class="divider"></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProfilUtilisateur.Facebook)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Activated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ActivationCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Civilite)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedAt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ParentID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResetPasswordCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpdatedAt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Username)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProfilUtilisateur.Facebook)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Activated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ActivationCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Civilite)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ParentID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResetPasswordCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdatedAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Username)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.UtilisateurID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.UtilisateurID }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.UtilisateurID })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>
+<script src="~/Scripts/jquery-2.1.4.min.js"></script>
+<script src="~/Scripts/moment.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>

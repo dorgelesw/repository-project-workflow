@@ -8,5 +8,8 @@ namespace p7cSarlWF.Models.Service
 {
     public interface IProjectManager
     {
+        List<Project> GetAllProjects();
+        Project GetProjectByID(int ProjectID);
+        Project SaveProject(Project Project);
     }
 }
