@@ -52,7 +52,7 @@
                     <select id="TypeRessourceID" name="TypeRessourceID" class="form-control">
                         @foreach (p7cSarlWF.Models.TypeRessource type in TypesRessources)
                         {
-                           <option value="@type.TypeRessourceID">@type.TypeName</option> 
+                           <option value="@type.TypeRessourceID#@type.TypeName">@type.TypeName</option> 
                         }                            
                     </select>
                 </div>
@@ -63,7 +63,7 @@
                     <select id="RessourceID" name="RessourceID" class="form-control">
                         @foreach (p7cSarlWF.Models.Ressource ressource in Ressources)
                         {
-                            <option value="@ressource.RessourceID">@ressource.RessourceName</option>
+                            <option value='@ressource.RessourceID#@ressource.RessourceName'>@ressource.RessourceName</option>
                         }  
                     </select>
                 </div>
@@ -81,11 +81,16 @@
                     <textarea id="Note" name="Note" class="form-control" placeholder="Saisir une note pour commentaire"></textarea>
                 </div>
             </div>
+            <div class="form-group">
+                <div class="col-xs-10">
+                    <a href="#" class="btn btn-primary" id="ajouter">Ajouter A la liste</a>
+                </div>
+            </div>
         </form>        
     </div>
 
     <div class="bs-example">
-        <table class="table table-hover">
+        <table id="Ressources" class="table table-hover table-responsive">
             <thead>
                 <tr>
                     <th>Type de ressource</th>
@@ -140,3 +145,32 @@
 <script src="~/Scripts/moment.min.js"></script>
 <script src="~/Scripts/bootstrap.min.js"></script>
 <script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#ajouter').click(function () {
+            var typeRessource = $("#TypeRessourceID").val();
+            var ressource = $("#RessourceID").val();
+            var note = $("#Note").val();
+            var quantite = $("#Quantite").val();
+            var idtype = typeRessource.split("#")[0];
+            var nomtype = typeRessource.split("#")[1];
+            var idRessource = ressource.split("#")[0];
+            var nomRessource = ressource.split("#")[1];            
+            var projectRessource = {ProjectID:@Model.ProjectID, RessourceID:idRessource, Quantite:quantite, Note:note};            
+            console.log(projectRessource.toString())
+            $.post("http://localhost:6650/api/Projects/Ressource", projectRessource, function (data) {
+                //s'il faut exploiter le message venu du serveur
+            }).done(function() {
+                    alert("La ressource a été affectée au projet.");
+                    $('#Ressources').append("<tr><td>"+nomtype+"</td><td>"+nomRessource+"</td><td>"+quantite+"</td><td>"+note+"</td></tr>");
+                })
+              .fail(function() {
+                  alert( "L'affectation de la ressource a échoué. Une erreur interne." );
+              })
+              .always(function() {
+                  //ici je vais mettre le code pour cacher l'image loader
+              });
+            
+        });
+    });
+</script>

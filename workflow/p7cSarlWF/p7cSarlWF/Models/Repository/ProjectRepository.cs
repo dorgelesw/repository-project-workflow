@@ -1,6 +1,7 @@
 ﻿using p7cSarlWF.Models.Context;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -36,5 +37,27 @@ namespace p7cSarlWF.Models.Repository
 
             return Project;
         }
+
+        public Project UpdateProject(Project Project)
+        {
+
+            WorkFlowContext context = new WorkFlowContext();
+            Project = context.Projects.Find(Project.ProjectID);
+            context.Entry(Project).State = EntityState.Modified;
+            context.SaveChanges();
+            return Project;
+        }
+
+        public ProjectRessource SaveProjectRessource(ProjectRessource pr)
+        {
+            WorkFlowContext context = new WorkFlowContext();
+            Project Project = context.Projects.Find(pr.ProjectID);
+            Project.ProjectRessources.Add(pr);
+            context.Entry(Project).State = EntityState.Modified;
+            //pr = context.ProjectRessources.Add(pr);
+            context.SaveChanges();
+            return pr;
+        }
+
     }
 }

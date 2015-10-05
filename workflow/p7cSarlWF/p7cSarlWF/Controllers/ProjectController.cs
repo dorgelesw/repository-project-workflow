@@ -51,7 +51,7 @@ namespace p7cSarlWF.Controllers
                 
                 Project = ProjectManager.SaveProject(Project);
 
-                return RedirectToAction("Ressources", {id=Project.ProjectID});
+                return RedirectToAction("Ressources", new {@id=Project.ProjectID});
             }
             return View(Project);
         }

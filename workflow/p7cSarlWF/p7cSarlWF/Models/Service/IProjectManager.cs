@@ -11,5 +11,7 @@ namespace p7cSarlWF.Models.Service
         List<Project> GetAllProjects();
         Project GetProjectByID(int ProjectID);
         Project SaveProject(Project Project);
+        Project UpdateProject(Project Project);
+        ProjectRessource SaveProjectRessource(ProjectRessource pr);
     }
 }

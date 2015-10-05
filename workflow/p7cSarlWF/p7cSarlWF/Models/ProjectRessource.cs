@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace p7cSarlWF.Models
     public class ProjectRessource
     {
 
-        [Required]
+        
         public int ProjectRessourceID { get; set; }
         [Required]
         public int ProjectID { get; set; }
@@ -25,13 +26,15 @@ namespace p7cSarlWF.Models
         [Required]
         public string Note { get; set; }
         //la date où la ressource a été affectée
-        [Required]
+        
         public DateTime AffectationDate { get; set; }
         public DateTime DeleteDate { get; set; }
-        [Required]
+        
         public Boolean Deleted { get; set; }
 
+        [JsonIgnore]
         public virtual Ressource Ressource { get; set; }
+        [JsonIgnore]
         public virtual Project Project { get; set; }
 
     }

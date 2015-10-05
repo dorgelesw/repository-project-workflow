@@ -27,9 +27,15 @@ namespace p7cSarlWF.Models.Service
             return Repository.GetProjectByID(ProjectID);
         }
 
+        public ProjectRessource SaveProjectRessource(ProjectRessource pr)
+        {
+            return Repository.SaveProjectRessource(pr);
+        }
 
-
-
+        public Project UpdateProject(Project Project)
+        {
+            return Repository.UpdateProject(Project);
+        }
 
 
 

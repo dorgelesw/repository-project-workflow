@@ -10,7 +10,8 @@ namespace p7cSarlWF.Models.Repository
     {
         List<Project> GetAllProjects();
         Project SaveProject(Project Project);
-
+        Project UpdateProject(Project Project);
         Project GetProjectByID(int ProjectID);
+        ProjectRessource SaveProjectRessource(ProjectRessource pr);
     }
 }
