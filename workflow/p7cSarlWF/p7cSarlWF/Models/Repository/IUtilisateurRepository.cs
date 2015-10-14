@@ -13,5 +13,14 @@ namespace p7cSarlWF.Models.Repository
         List<Client> GetListeAllClient();
 
         Client saveClient(Client client);
+        Utilisateur SaveUtilisateur(Utilisateur Utilisateur);
+        Utilisateur GetUtilisateurByID(int id);
+        Utilisateur UpdateUtilisateur(Utilisateur Utilisateur);
+
+        Utilisateur Delete(int id);
+
+        Client UpdateClient(Client Client);
+
+        Client GetClientByID(int id);
     }
 }

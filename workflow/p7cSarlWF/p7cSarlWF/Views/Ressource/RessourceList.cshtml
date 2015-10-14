@@ -8,9 +8,17 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
-    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <link href="~/Content/pnotify.custom.css" rel="stylesheet" />
+    <link href="~/Content/animate.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/craftpip-jquery-confirm/jquery-confirm.css" rel="stylesheet" />  
     <title>RessourceList</title>
 </head>
 <body>
@@ -65,8 +73,8 @@
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id=item.RessourceID }) |
-                @Html.ActionLink("Details", "Details", new { id=item.RessourceID }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.RessourceID })
+                @*@Html.ActionLink("Details", "Details", new { id=item.RessourceID }) |*@
+                @Html.ActionLink("Delete", "DeleteType", new { id = item.RessourceID }, new {@class="delete" })
             </td>
         </tr>
     }
@@ -74,9 +82,12 @@
     </table>
 </body>
 </html>
-<script src="~/Scripts/jquery-2.1.4.js"></script>
-<script src="~/Scripts/bootstrap.js"></script>
-<script src="~/Scripts/jquery.validate.js"></script>
-<script src="~/Scripts/underscore.js"></script>
-<script src="~/Scripts/backbone.js"></script>
-<script src="~/Scripts/knockout-3.3.0.js"></script>
+<script src="~/Scripts/jquery-2.1.4.min.js"></script>
+<script src="~/Scripts/moment.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
+<script src="~/Scripts/craftpip-jquery-confirm/highlight.min.js"></script>
+<script src="~/Scripts/craftpip-jquery-confirm/jquery-confirm.js"></script>
+<script src="~/Scripts/craftpip-jquery-confirm/pretty.js"></script>
+<script src="~/Scripts/pnotify.custom.js"></script>
+<script src="~/Scripts/script.js"></script>

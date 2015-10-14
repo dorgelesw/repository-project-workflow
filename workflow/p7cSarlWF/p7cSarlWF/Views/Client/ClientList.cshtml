@@ -8,11 +8,18 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
     <link href="~/Content/bootstrap-datetimepicker.min.css" rel="stylesheet" />
-    <title>ClientList</title>
+    <link href="~/Content/pnotify.custom.css" rel="stylesheet" />
+    <link href="~/Content/animate.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/craftpip-jquery-confirm/jquery-confirm.css" rel="stylesheet" />
+    <title>Index</title>
 </head>
 <body>
     <nav class="navbar navbar-default">
@@ -40,13 +47,7 @@
         @Html.ActionLink("Create New", "CreateClient")
     </p>
     <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Activated)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ActivationCode)
-            </th>
+        <tr>            
             <th>
                 @Html.DisplayNameFor(model => model.Civilite)
             </th>
@@ -63,18 +64,6 @@
                 @Html.DisplayNameFor(model => model.LastName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ParentID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Password)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ResetPasswordCode)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UpdatedAt)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Username)
             </th>
             <th></th>
@@ -82,17 +71,12 @@
     
     @foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Activated)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ActivationCode)
-            </td>
+            
             <td>
                 @Html.DisplayFor(modelItem => item.Civilite)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CreatedAt)
+                @Html.Raw(item.CreatedAt.ToString("MMMM dd, yyyy"))
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.email)
@@ -103,25 +87,14 @@
             <td>
                 @Html.DisplayFor(modelItem => item.LastName)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ParentID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Password)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ResetPasswordCode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UpdatedAt)
-            </td>
+            
             <td>
                 @Html.DisplayFor(modelItem => item.Username)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id=item.UtilisateurID }) |
-                @Html.ActionLink("Details", "Details", new { id=item.UtilisateurID }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.UtilisateurID })
+                @*@Html.ActionLink("Details", "Details", new { id=item.UtilisateurID }) |*@
+                @Html.ActionLink("Delete", "Delete", new { id=item.UtilisateurID }, new { @class = "delete" })
             </td>
         </tr>
     }
@@ -133,3 +106,8 @@
 <script src="~/Scripts/moment.min.js"></script>
 <script src="~/Scripts/bootstrap.min.js"></script>
 <script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
+<script src="~/Scripts/craftpip-jquery-confirm/highlight.min.js"></script>
+<script src="~/Scripts/craftpip-jquery-confirm/jquery-confirm.js"></script>
+<script src="~/Scripts/craftpip-jquery-confirm/pretty.js"></script>
+<script src="~/Scripts/pnotify.custom.js"></script>
+<script src="~/Scripts/script.js"></script>

@@ -14,9 +14,8 @@ namespace p7cSarlWF.Models
      */
     public class Utilisateur
     {
-        [Required]
-        public int UtilisateurID { get; set; }
-
+        
+        public int UtilisateurID { get; set; }        
         
         public Boolean Activated{ get; set; }
 
@@ -74,8 +73,13 @@ namespace p7cSarlWF.Models
         [DataType(DataType.Text)]
         public string Username { get; set; }
 
+        public bool? deleted { get; set; }
 
-        public virtual ProfilUtilisateur ProfilUtilisateur { get; set; }
+
+        [ForeignKey("Profil")]
+        public int ProfilID { get; set; }
+
+        public virtual Profil Profil { get; set; }
         /**
          * Les projets auquel l'utilisateur est lié
          * */

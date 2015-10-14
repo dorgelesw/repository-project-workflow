@@ -8,16 +8,16 @@ using System.Text;
 
 namespace p7cSarlWF.Models
 {
-    public  class ProfilUtilisateur
+    public  class Profil
     {
 
-        public int ProfilUtilisateurID { get; set; }
+        public int ProfilID { get; set; }
 
         [DisplayName("Facebook Profile")]
         [DataType(DataType.Text)]
         public string Facebook { get; set; }
 
-        [Required(ErrorMessage = "Please enter user address")]
+        //[Required(ErrorMessage = "Please enter user address")]
         [DisplayName("User Address")]
         [DataType(DataType.Text)]
         public string Address { get; set; }
@@ -30,7 +30,7 @@ namespace p7cSarlWF.Models
         [DataType(DataType.Text)]
         public string Linkedin { get; set; }
 
-        [Required(ErrorMessage = "Please enter mobile phone number")]
+        //[Required(ErrorMessage = "Please enter mobile phone number")]
         [DisplayName("Mobile phone")]
         [DataType(DataType.PhoneNumber)]
         public string MobPhone { get; set; }
@@ -40,8 +40,8 @@ namespace p7cSarlWF.Models
         public string OfficePhone { get; set; }
 
         [DisplayName("Postal Code")]
-        [DataType(DataType.PostalCode)]
-        public int PostalCode { get; set; }
+        [DataType(DataType.Text)]
+        public string PostalCode { get; set; }
 
         [DisplayName("Skype ID")]
         [DataType(DataType.Text)]
@@ -59,9 +59,8 @@ namespace p7cSarlWF.Models
         [DataType(DataType.Url)]
         public string Website { get; set; }
 
-        [Key, ForeignKey("Utilisateur")]
-        public int UtilisateurID { get; set; }
+        
 
-        public virtual Utilisateur Utilisateur { get; set; }
+        //public virtual Utilisateur Utilisateur { get; set; }
     }
 }

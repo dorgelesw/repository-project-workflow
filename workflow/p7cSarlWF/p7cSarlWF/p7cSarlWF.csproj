@@ -129,13 +129,19 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\animate.css" />
     <Content Include="Content\bootstrap-datetimepicker.css" />
     <Content Include="Content\bootstrap-datetimepicker.min.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\craftpip-jquery-confirm\jquery-confirm.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\pnotify.custom.css" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -224,11 +230,23 @@
     <Content Include="Content\bootstrap\alerts.less" />
     <Content Include="Content\bootstrap-datetimepicker-build.less" />
     <Content Include="Content\_bootstrap-datetimepicker.less" />
+    <Content Include="Content\craftpip-jquery-confirm\jquery-confirm.less" />
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\FontAwesome.otf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\FontAwesome.otf" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\craftpip-jquery-confirm\highlight.min.js" />
+    <Content Include="Scripts\craftpip-jquery-confirm\jquery-confirm.js" />
+    <Content Include="Scripts\craftpip-jquery-confirm\pretty.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -242,6 +260,8 @@
     <Content Include="Scripts\moment-with-locales.min.js" />
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\pnotify.custom.js" />
+    <Content Include="Scripts\script.js" />
     <Content Include="Scripts\underscore.js" />
     <Content Include="Scripts\underscore.min.js" />
     <Content Include="Web.config" />
@@ -250,8 +270,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\Api\ColorsController.cs" />
+    <Compile Include="Controllers\Api\ProfilsController.cs" />
     <Compile Include="Controllers\Api\ProjectsController.cs" />
     <Compile Include="Controllers\Api\RessourcesController.cs" />
+    <Compile Include="Controllers\Api\UtilisateursController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\ColorController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
@@ -266,22 +288,26 @@
     <Compile Include="Models\Context\WorkFlowContextInitializer.cs" />
     <Compile Include="Models\Fichier.cs" />
     <Compile Include="Models\Infrastructure\Infrastructure.cs" />
-    <Compile Include="Models\ProfilUtilisateur.cs" />
+    <Compile Include="Models\Profil.cs" />
     <Compile Include="Models\Project.cs" />
     <Compile Include="Models\ProjectRessource.cs" />
+    <Compile Include="Models\Repository\IProfilRepository.cs" />
     <Compile Include="Models\Repository\IProjectRepository.cs" />
     <Compile Include="Models\Repository\IRessourceRepository.cs" />
     <Compile Include="Models\Repository\IUtilisateurRepository.cs" />
+    <Compile Include="Models\Repository\ProfilRepository.cs" />
     <Compile Include="Models\Repository\ProjectRepository.cs" />
     <Compile Include="Models\Repository\RessourceRepository.cs" />
     <Compile Include="Models\Repository\UtilisateurRepository.cs" />
     <Compile Include="Models\Ressource.cs" />
     <Compile Include="Models\Service\ClientManager.cs" />
     <Compile Include="Models\Service\IClientManager.cs" />
+    <Compile Include="Models\Service\IProfilManager.cs" />
     <Compile Include="Models\Service\IProjectManager.cs" />
     <Compile Include="Models\Service\IRessourceManager.cs" />
     <Compile Include="Models\Service\IUtilisateurManager.cs" />
     <Compile Include="Models\Service\P7CUtils.cs" />
+    <Compile Include="Models\Service\ProfilManager.cs" />
     <Compile Include="Models\Service\ProjectManager.cs" />
     <Compile Include="Models\Service\RessourceManager.cs" />
     <Compile Include="Models\Service\UtilisateurManager.cs" />
@@ -311,6 +337,11 @@
     <Content Include="Views\Project\Create.cshtml" />
     <Content Include="Views\Project\Ressources.cshtml" />
     <Content Include="Views\Utilisateur\Index.cshtml" />
+    <Content Include="Views\Utilisateur\Create.cshtml" />
+    <Content Include="Views\Utilisateur\Edit.cshtml" />
+    <Content Include="Views\Client\Edit.cshtml" />
+    <Content Include="Views\Ressource\Edit.cshtml" />
+    <Content Include="Views\Project\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

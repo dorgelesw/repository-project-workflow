@@ -64,22 +64,9 @@
                 </div>
             </div>
     
-            <div class="form-group">
-                @Html.LabelFor(model => model.CreatedBy, "CreatedBy", new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.ValidationMessageFor(model => model.CreatedBy)
-                    @Html.DropDownListFor(model => model.CreatedBy, new SelectList(@utilisateurs, "UtilisateurID", "FirstName", "Choisir l'utilisateur"), new { @class = "form-control" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.CreatedDate, new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.CreatedDate)
-                    @Html.ValidationMessageFor(model => model.CreatedDate)
-                </div>
-            </div>
-    
+            @Html.HiddenFor(model => model.CreatedBy)
+            @Html.HiddenFor(model => model.CreatedDate)    
+                
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <input type="submit" value="Save" class="btn btn-default" />

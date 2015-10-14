@@ -34,6 +34,7 @@ namespace p7cSarlWF.Models.Service
 
         public Project UpdateProject(Project Project)
         {
+            Project.UpdatedDate = DateTime.Now;
             return Repository.UpdateProject(Project);
         }
 

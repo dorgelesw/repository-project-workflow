@@ -9,7 +9,11 @@ namespace p7cSarlWF.Models.Service
     public interface IClientManager
     {
         List<Client> GetListeAllClient();
-
         Client saveClient(Client client);
+        Client Delete(int id);
+
+        Client UpdateClient(Client Client);
+
+        Client GetClientByID(int id);
     }
 }

@@ -19,12 +19,12 @@ namespace p7cSarlWF.Models.Repository
 
         public List<TypeRessource> GetAllTypesRessources()
         {
-            return context.TypeRessources.ToList();
+            return context.TypeRessources.Where(type => type.deleted != true).ToList();
         }
                
         public List<TypeRessource> GetAllTypesRessourcesByUserID(int UtilisateurID)
         {
-            return context.TypeRessources.Where(type => type.CreatedBy == UtilisateurID).ToList();
+            return context.TypeRessources.Where(type => type.CreatedBy == UtilisateurID && type.deleted!=true).ToList();
         }
         
         public List<Ressource> GetAllRessources()
@@ -95,6 +95,33 @@ namespace p7cSarlWF.Models.Repository
             ctx.SaveChanges();
             
             
+        }
+
+        public bool DeleteType(int id)
+        {
+            WorkFlowContext ctx = new WorkFlowContext();
+            TypeRessource type = ctx.TypeRessources.Find(id);
+            type.deleted = true;
+            ctx.Entry(type).State = EntityState.Modified;
+            ctx.SaveChanges();
+            return true;
+        }
+
+        public void DestroyType(int id)
+        {
+            WorkFlowContext ctx = new WorkFlowContext();
+            TypeRessource type = ctx.TypeRessources.Find(id);
+            type.deleted = true;
+            ctx.Entry(type).State = EntityState.Deleted;
+            ctx.SaveChanges();
+        }
+
+        public Ressource UpdateRessource(Ressource Ressource)
+        {
+            WorkFlowContext contex = new WorkFlowContext();
+            contex.Entry(Ressource).State = EntityState.Modified;
+            context.SaveChanges();
+            return Ressource;
         }
     }
 }

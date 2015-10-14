@@ -21,6 +21,22 @@ namespace p7cSarlWF.Models.Service
             return Repository.saveClient(client);
         }
 
+        public Client Delete(int id)
+        {
+            return (Client)Repository.Delete(id);
+        }
+
+        public Client UpdateClient(Client Client)
+        {
+            Client.UpdatedAt = DateTime.Now;
+            return Repository.UpdateClient(Client);
+        }
+
+        public Client GetClientByID(int id)
+        {
+            return Repository.GetClientByID(id);
+        }
+
         public ClientManager()
         {//injection de la dépendance
             Repository = (IUtilisateurRepository)GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(IUtilisateurRepository));

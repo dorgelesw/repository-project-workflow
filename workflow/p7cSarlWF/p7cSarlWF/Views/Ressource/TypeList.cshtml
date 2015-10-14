@@ -8,10 +8,18 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    <title>TypeList</title>
+    <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <link href="~/Content/pnotify.custom.css" rel="stylesheet" />
+    <link href="~/Content/animate.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/craftpip-jquery-confirm/jquery-confirm.css" rel="stylesheet" />  
+    <title>RessourceList</title>
 </head>
 <body>
     <nav class="navbar navbar-default">
@@ -48,27 +56,34 @@
             </th>
             <th></th>
         </tr>
-    
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TypeDescription)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TypeName)
-            </td>
-            <td>
-                @Html.ActionLink("Ressources", "RessourceList", new { id = item.TypeRessourceID }) |
-                @Html.ActionLink("Edit", "EditType", new { TypeRessourceID = item.TypeRessourceID }) |
-                @Html.ActionLink("Details", "Details", new { id=item.TypeRessourceID }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.TypeRessourceID })
-            </td>
-        </tr>
-    }
-    
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TypeDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TypeName)
+                </td>
+                <td>
+                    @Html.ActionLink("Ressources(" + item.Ressources.Count + ")", "RessourceList", new { id = item.TypeRessourceID }) |
+                    @Html.ActionLink("Edit", "EditType", new { TypeRessourceID = item.TypeRessourceID }) |
+                    @*@Html.ActionLink("Details", "Details", new { id = item.TypeRessourceID }) |*@
+                    @Html.ActionLink("Delete", "Delete", new { id = item.TypeRessourceID }, new { @class = "delete" })
+                </td>
+            </tr>
+        }
+
     </table>
 </body>
 </html>
-
-<script src="~/Scripts/bootstrap.min.js"></script>
 <script src="~/Scripts/jquery-2.1.4.min.js"></script>
+<script src="~/Scripts/moment.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
+<script src="~/Scripts/craftpip-jquery-confirm/highlight.min.js"></script>
+<script src="~/Scripts/craftpip-jquery-confirm/jquery-confirm.js"></script>
+<script src="~/Scripts/craftpip-jquery-confirm/pretty.js"></script>
+<script src="~/Scripts/pnotify.custom.js"></script>
+<script src="~/Scripts/script.js"></script>

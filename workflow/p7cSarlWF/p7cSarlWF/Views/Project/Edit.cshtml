@@ -1,0 +1,283 @@
+﻿@model p7cSarlWF.Models.Project
+@{
+    var utilisateurs = (List<p7cSarlWF.Models.Utilisateur>)ViewBag.Utilisateurs;
+    var projets = (List<p7cSarlWF.Models.Project>)ViewBag.Projects;
+    var clients = (List<p7cSarlWF.Models.Client>)ViewBag.Clients;
+}
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <link href="~/Content/pnotify.custom.css" rel="stylesheet" />
+    <link href="~/Content/animate.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/craftpip-jquery-confirm/jquery-confirm.css" rel="stylesheet" />  
+    <title>Edit</title>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="@Url.Action("Index", "Project", null)">Projets</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="@Url.Action("TypeList", "Ressource", null)">Types Ressources</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="@Url.Action("Index", "Client", null)">Clients</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="@Url.Action("Index", "Utilisateur", null)">Utilisateurs</a></li>
+                            <li role="separator" class="divider"></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        
+        <div class="form-horizontal">
+            <h4>Project</h4>
+            <hr />
+            @Html.ValidationSummary(true)
+            @Html.HiddenFor(model => model.ProjectID)
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.ColorIdentifier, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ColorIdentifier)<span class="glyphicon glyphicon-calendar" id="ChoixCouleur"></span>
+                    @Html.ValidationMessageFor(model => model.ColorIdentifier)
+                </div>
+            </div>
+            <div id="Colors" class="col-lg-12"></div>
+            @Html.HiddenFor(model => model.ParentID)
+            <div class="form-group">
+                @Html.LabelFor(model => model.ParentID, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <select class="form-control" data-val="true" data-val-number="Le champ Parent Project doit être un nombre." data-val-required="Le champ Parent Project est requis." id="ParentID" name="ParentID">
+                        <option value="0">Projet indépendant</option>
+                        @foreach (var projet in projets)
+                        {
+                            if (projet.ProjectID!=Model.ProjectID)
+                            {
+                                <option value="@projet.ProjectID" @if(Model.ParentID==projet.ProjectID){ @Html.Raw("selected") }  >@projet.ProjectShortName</option>
+                            }                            
+                        }
+                    </select>
+                    @Html.ValidationMessageFor(model => model.ParentID)
+                </div>
+            </div>
+            
+                
+            <div class="form-group">
+                @Html.LabelFor(model => model.PriorityID, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.PriorityID)
+                    @Html.ValidationMessageFor(model => model.PriorityID)
+                </div>
+            </div>
+    
+            @Html.HiddenFor(model => model.CreatedAt)
+            @Html.HiddenFor(model => model.DeletedBy)    
+                
+            <div class="form-group">
+                @Html.LabelFor(model => model.StartDate, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.StartDate)
+                    @Html.ValidationMessageFor(model => model.StartDate)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.EndDate, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.EndDate)
+                    @Html.ValidationMessageFor(model => model.EndDate)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.Projectlocation, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Projectlocation)
+                    @Html.ValidationMessageFor(model => model.Projectlocation)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProjectBudget, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ProjectBudget)
+                    @Html.ValidationMessageFor(model => model.ProjectBudget)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProjectDescription, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ProjectDescription)
+                    @Html.ValidationMessageFor(model => model.ProjectDescription)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProjectFullName, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ProjectFullName)
+                    @Html.ValidationMessageFor(model => model.ProjectFullName)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProjectShortName, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ProjectShortName)
+                    @Html.ValidationMessageFor(model => model.ProjectShortName)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProjectManager, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">                    
+                    <select class="form-control" data-val="true" data-val-number="Le champ Parent Project doit être un nombre." data-val-required="Le champ Parent Project est requis." id="ProjectManager" name="ProjectManager">                        
+                        @foreach (var user in utilisateurs)
+                        {
+                            <option value="@user.UtilisateurID" @if (Model.ProjectManager == user.UtilisateurID) { @Html.Raw("selected")    }>@(user.FirstName+" "+user.LastName+"("+user.Username+")")</option>
+                        }
+                    </select>
+                    @Html.ValidationMessageFor(model => model.ProjectManager)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProjectResponsible, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <select class="form-control" data-val="true" data-val-number="Le champ Parent Project doit être un nombre." data-val-required="Le champ Parent Project est requis." id="ProjectResponsible" name="ProjectResponsible">
+                        @foreach (var user in utilisateurs)
+                        {
+                            <option value="@user.UtilisateurID" @if (Model.ProjectManager == user.UtilisateurID) { @Html.Raw("selected")       }>@(user.FirstName + " " + user.LastName + "(" + user.Username + ")")</option>
+                        }
+                    </select>
+                    @Html.ValidationMessageFor(model => model.ProjectResponsible)
+                </div>
+            </div>
+    
+            @Html.HiddenFor(model => model.ProjectStatus)
+            @Html.HiddenFor(model => model.ProjectPercentComplete)    
+            
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProjectUrl, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ProjectUrl)
+                    @Html.ValidationMessageFor(model => model.ProjectUrl)
+                </div>
+            </div>
+    
+            @Html.HiddenFor(model => model.TaskCount)
+            @Html.HiddenFor(model => model.UpdatedDate)
+            @Html.HiddenFor(model => model.UpdatedBy)    
+    
+                
+            <div class="form-group">
+                @Html.LabelFor(model => model.ClientID, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <select class="form-control" data-val="true" data-val-number="Le champ Parent Project doit être un nombre." data-val-required="Le champ Parent Project est requis." id="ClientID" name="ClientID">
+                        @foreach (var user in clients)
+                        {
+                            <option value="@user.UtilisateurID" @if (Model.ClientID == user.UtilisateurID) { @Html.Raw("selected")          }>@(user.FirstName + " " + user.LastName + "(" + user.Username + ")")</option>
+                        }
+                    </select>
+                    @Html.ValidationMessageFor(model => model.ClientID)
+                </div>
+            </div>
+            @Html.HiddenFor(model => model.ProjectCreator)
+                
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+    
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</body>
+</html>
+<script src="~/Scripts/jquery-2.1.4.min.js"></script>
+<script src="~/Scripts/moment.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
+<script src="~/Scripts/craftpip-jquery-confirm/highlight.min.js"></script>
+<script src="~/Scripts/craftpip-jquery-confirm/jquery-confirm.js"></script>
+<script src="~/Scripts/craftpip-jquery-confirm/pretty.js"></script>
+<script src="~/Scripts/pnotify.custom.js"></script>
+<script src="~/Scripts/script.js"></script>
+<script language="javascript" type="text/javascript">
+    $(function () {
+
+        $('#StartDate').datetimepicker({
+            format: 'd/MM/YYYY',
+            icons: {
+                date: "glyphicon glyphicon-calendar",
+                up: "glyphicon glyphicon-arrow-up",
+                down: "glyphicon glyphicon-arrow-down"
+            }
+        });
+        $('#EndDate').datetimepicker({
+            useCurrent: false, //Important! See issue #1075
+            format: 'd/MM/YYYY',
+            icons: {
+                date: "glyphicon glyphicon-calendar",
+                up: "glyphicon glyphicon-arrow-up",
+                down: "glyphicon glyphicon-arrow-down"
+            }
+        });
+        $("#StartDate").on("dp.change", function (e) {
+            $('#EndDate').data("DateTimePicker").minDate(e.date);
+        });
+        $("#EndDate").on("dp.change", function (e) {
+            $('#StartDate').data("DateTimePicker").maxDate(e.date);
+        });
+
+
+        $("#Colors").hide();
+        $("#ColorIdentifier").attr("readonly", true);
+        $("#ChoixCouleur").click(function () {
+            var html = $("#Colors").html();
+            if (html.trim() == '') {
+                $.get("http://localhost:6650/api/Colors", null, function (data) {
+                    $("#Colors").html(data);
+                });
+                $(document).on('click', 'td', function () {
+                    $("#ColorIdentifier").val($(this).attr("bgcolor"));
+                    $("#Colors").toggle();
+                });
+
+                $(document).on('mouseover', 'td', function () {
+                    $("#ColorIdentifier").css("background-color", $(this).css("background-color"));
+                    $(this).css("cursor", "pointer");
+                });
+            }
+            $("#Colors").toggle();
+        });
+
+    });
+</script> 

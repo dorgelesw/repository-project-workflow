@@ -56,6 +56,9 @@ namespace p7cSarlWF.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CreateType(TypeRessource typeRessource)
         {
+            typeRessource.CreatedDate = DateTime.Now;
+            typeRessource.CreatedBy = 1;
+
             if (ModelState.IsValid)
             {
                 RessourceManager.SaveTypeRessource(typeRessource);
@@ -193,9 +196,42 @@ namespace p7cSarlWF.Controllers
             }
 
 
-            return null;
+            return View(rf);
         }
 
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+
+            Ressource Ressource = RessourceManager.GetRessourceByID(id);
+            if (Ressource != null)
+            {
+                return View(Ressource);
+            }
+            else
+            {
+                return RedirectToAction("TypeList");
+            }
+
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Ressource Ressource)
+        {
+            if (ModelState.IsValid)
+            {
+                Ressource = RessourceManager.UpdateRessource(Ressource);
+                
+            }
+            int typeID = Ressource.TypeRessourceID;
+            return RedirectToAction("RessourceList", new { id = typeID });
+        }
+
+        public ActionResult DeleteType(int id)
+        {
+            bool boo = RessourceManager.DeleteType(id);
+            return RedirectToAction("TypeList");
+        }
 
         public RessourceController()
         {

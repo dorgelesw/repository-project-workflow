@@ -4,8 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Http;
+//using System.Web.Http;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace p7cSarlWF.Controllers
 {
@@ -16,7 +17,7 @@ namespace p7cSarlWF.Controllers
 
         public ClientController()
         {
-            ClientManager = (IClientManager)GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(IClientManager));
+            ClientManager = (IClientManager)System.Web.Http.GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(IClientManager));
             //UtilisateurManager = (IUtilisateurManager)GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(IUtilisateurManager));
         }
 
@@ -55,6 +56,9 @@ namespace p7cSarlWF.Controllers
             client.ResetPasswordCode = "";
             client.UpdatedAt = DateTime.Now;
             //client.ProfilUtilisateur = new ProfilUtilisateur();
+            string password = Membership.GeneratePassword(6, 1);
+
+            client.ActivationCode = password;
 
             if (ModelState.IsValid)
             {
@@ -63,6 +67,30 @@ namespace p7cSarlWF.Controllers
             }
 
             return View(client);
+        }
+
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            Client Client = ClientManager.GetClientByID(id);
+            return View(Client);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Client Client)
+        {
+            if (ModelState.IsValid)
+            {
+                ClientManager.UpdateClient(Client);
+                return RedirectToAction("ClientList");
+            }
+            return View(Client);
+        }
+
+        public ActionResult Delete(int id)
+        {
+            ClientManager.Delete(id);
+            return RedirectToAction("ClientList");
         }
     }
 }

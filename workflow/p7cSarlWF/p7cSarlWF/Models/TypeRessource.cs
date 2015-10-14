@@ -29,6 +29,8 @@ namespace p7cSarlWF.Models
 
         public virtual List<Ressource> Ressources { get; set; }
 
+        public bool deleted { get; set; }
+
         //ID de l'utilisateur qui a créé le type de ressource
         [ForeignKey("Utilisateur")]
         public int CreatedBy { get; set; }

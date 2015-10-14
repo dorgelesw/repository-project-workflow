@@ -42,6 +42,14 @@ namespace p7cSarlWF.Models.Infrastructure
             {
                 return new ClientManager();
             }
+            else if (serviceType == typeof(IProfilRepository))
+            {
+                return new ProfilRepository();
+            }
+            else if (serviceType == typeof(IProfilManager))
+            {
+                return new ProfilManager();
+            }
             else{
                 return null;
             }

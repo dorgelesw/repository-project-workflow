@@ -1,5 +1,9 @@
 ﻿@model p7cSarlWF.Models.Client
-
+@{
+    var utilisateurs = (List<p7cSarlWF.Models.Utilisateur>)ViewBag.Utilisateurs;
+    var projets = (List<p7cSarlWF.Models.Project>)ViewBag.Projects;
+    var Profil = new p7cSarlWF.Models.Profil();
+}
 @{
     Layout = null;
 }
@@ -36,16 +40,15 @@
             </div>
         </div>
     </nav>
-    @using (Html.BeginForm()) 
-    {
-        @Html.AntiForgeryToken()
-        
-        <div class="form-horizontal">
+    <div class="form-horizontal">
+        @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "saveClient" }))
+        {
+            @Html.AntiForgeryToken()
+
             <h4>Client</h4>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    
-            
+
             <div class="form-group">
                 @Html.LabelFor(model => model.Civilite, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -53,7 +56,7 @@
                     @Html.ValidationMessageFor(model => model.Civilite, "", new { @class = "text-danger" })
                 </div>
             </div>
-    
+
             <div class="form-group">
                 @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -61,7 +64,7 @@
                     @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
                 </div>
             </div>
-    
+
             <div class="form-group">
                 @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -69,7 +72,7 @@
                     @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
                 </div>
             </div>
-    
+
             <div class="form-group">
                 @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -77,16 +80,16 @@
                     @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
                 </div>
             </div>
-    
-    
+
+
             <div class="form-group">
                 @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                 </div>
-            </div>   
-    
+            </div>
+
             <div class="form-group">
                 @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -94,23 +97,100 @@
                     @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
                 </div>
             </div>
-    
+
             <div class="form-group">
                 @Html.LabelFor(model => model.TypeClient, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.TypeClient, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.TypeClient, "", new { @class = "text-danger" })
                 </div>
-            </div>
-    
+            </div>            
+            
+            @Html.HiddenFor(model => model.ProfilID)
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
+                    <input type="submit" value="Create" class="btn btn-primary" />
                 </div>
+            </div>            
+        }
+
+        <div class="col-xs-12">
+            <hr />
+            <button type="button" class="btn btn-link" id="details"><span class="glyphicon glyphicon-plus"></span> More details</button>
+            <div id="profil">
+                <form name="formProfil" id="formProfil">
+                <div class="form-group">
+                    <label class="col-xs-3 control-label" for="MobPhone">Phone Numbers<sup>*</sup></label>
+                    <div class="col-xs-4">
+                        <input type="text" class="form-control" id="MobPhone" name="MobPhone" placeholder="Mobile Phone" />
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="col-xs-4">
+                        <input type="text" class="form-control" name="OfficePhone" id="OfficePhone" placeholder="Office Phone" />
+                        <div class="help-block with-errors"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-3 control-label" for="Address">Address<sup>*</sup></label>
+                    <div class="col-xs-8">
+                        <input type="text" class="form-control" name="Address" id="Address" placeholder="Please Enter address" />
+                        <div class="help-block with-errors"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-3 control-label" for="Ville">City</label>
+                    <div class="col-xs-8">
+                        <input type="text" class="form-control" name="Ville" id="Ville" placeholder="City" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-3 control-label" for="PostalCode">Postal Code</label>
+                    <div class="col-xs-8">
+                        <input type="text" class="form-control" name="PostalCode" id="PostalCode" placeholder="Postal Code" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-3 control-label" for="Website">Web Site</label>
+                    <div class="col-xs-8">
+                        <input type="url" class="form-control" name="Website" id="Website" placeholder="Web Site" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-3 control-label" for="Facebook">Facebook ID</label>
+                    <div class="col-xs-8">
+                        <input type="text" class="form-control" name="Facebook" id="Facebook" placeholder="Facebook ID or URL" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-3 control-label" for="Googleplus">Googleplus ID</label>
+                    <div class="col-xs-8">
+                        <input type="text" class="form-control" name="Googleplus" id="Googleplus" placeholder="Googleplus" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-3 control-label" for="Linkedin">LinkedIn ID</label>
+                    <div class="col-xs-8">
+                        <input type="text" class="form-control" name="Linkedin" id="Linkedin" placeholder="LinkedIn" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-3 control-label" for="Skype">Skype ID</label>
+                    <div class="col-xs-8">
+                        <input type="text" class="form-control" name="Skype" id="Skype" placeholder="Skype" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-3 control-label" for="Twitter">Twitter ID</label>
+                    <div class="col-xs-8">
+                        <input type="text" class="form-control" name="Twitter" id="Twitter" placeholder="Twitter" />
+                    </div>
+                </div>
+                </form>
             </div>
         </div>
-    }
-    
+
+    </div>    
+
     <div>
         @Html.ActionLink("Back to List", "Index")
     </div>
@@ -120,3 +200,67 @@
 <script src="~/Scripts/moment.min.js"></script>
 <script src="~/Scripts/bootstrap.min.js"></script>
 <script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script>
+    $(document).ready(function () {
+        
+        
+        $("#saveClient").submit(function (event) {
+            //$("#profil").toggle($("#profil").is(':hidden'));
+            //console.log($('div[id="profil"] :input').serializeArray());
+            var profil = getFormData($('#formProfil :input'));
+            console.log(profil);
+            if ($('#formProfil').valid()) {                
+                $.post("http://localhost:6650/api/Profils", profil, function (data) {                    
+                    $('#ProfilID').val(data.ProfilID);
+                }).done(function () {                    
+                })
+                .fail(function () {                  
+                })
+                .always(function () {
+                    //ici je vais mettre le code pour cacher l'image loader
+                });
+            } else {
+                var visible = !$("#profil").is(":visible");               
+                $("#profil").toggle(visible);
+                return false;
+            }
+            alert("Attente...");
+            //return false;
+            if (profil.MobPhone == '') {
+                $("#MobPhone").addClass("has-error");
+            }
+            console.log(data);
+            event.preventDefault();
+        });
+                
+        $("#formProfil").validate({
+
+            rules: {
+                MobPhone: "required",
+                OfficePhone: "required",
+                Address: "required"
+            },
+            // Specify the validation error messages
+            messages: {
+                MobPhone: "Please enter client Mobile phone",
+                OfficePhone: "Please enter client office phone",
+                Address: "Please enter client address"
+            }
+        });
+        
+        //$("#profil").toggle();
+        $("#details").click(function () {
+            $("#profil").toggle(1000);
+        });
+
+    });
+    function getFormData($form) {
+        var unindexed_array = $form.serializeArray();
+        var indexed_array = {};
+        $.map(unindexed_array, function (n, i) {
+            indexed_array[n['name']] = n['value'];
+        });
+        return indexed_array;
+    }
+</script>

@@ -71,9 +71,36 @@ namespace p7cSarlWF.Controllers
             return View(Project);
         }
 
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            Project projet = ProjectManager.GetProjectByID(id);
+            if (projet != null)
+            {
+                List<Client> clients = ClientManager.GetListeAllClient();
+                List<Utilisateur> Utilisateurs = UtilisateurManager.GetListeAllUtilisateur();
+                List<Project> Projects = ProjectManager.GetAllProjects();
+                ViewBag.Clients = clients;
+                ViewBag.Utilisateurs = Utilisateurs;
+                ViewBag.Projects = Projects;
+                return View(projet);
+            }
+            return RedirectToAction("Index");
+        }
 
-
-
+        [HttpPost]
+        public ActionResult Edit(Project Project)
+        {
+            if (ModelState.IsValid)
+            {
+                Project = ProjectManager.UpdateProject(Project);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(Project);
+            }
+        }
 
 
         public ProjectController()

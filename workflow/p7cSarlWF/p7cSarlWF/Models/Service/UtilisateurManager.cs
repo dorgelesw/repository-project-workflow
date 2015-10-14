@@ -18,11 +18,28 @@ namespace p7cSarlWF.Models.Service
         }
 
 
+        public Utilisateur SaveUtilisateur(Utilisateur Utilisateur)
+        {
+            return Repository.SaveUtilisateur(Utilisateur);
+        }
 
+        public Utilisateur GetUtilisateurByID(int id)
+        {
+            return Repository.GetUtilisateurByID(id);
+        }
 
+        public Utilisateur Delete(int id)
+        {
+            return Repository.Delete(id);
+        }
 
+        public Utilisateur UpdateUtilisateur(Utilisateur Utilisateur)
+        {
+            Utilisateur.UpdatedAt = DateTime.Now;
 
+            return Repository.UpdateUtilisateur(Utilisateur);
 
+        }
 
 
 

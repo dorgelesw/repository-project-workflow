@@ -40,9 +40,7 @@ namespace p7cSarlWF.Models.Repository
 
         public Project UpdateProject(Project Project)
         {
-
             WorkFlowContext context = new WorkFlowContext();
-            Project = context.Projects.Find(Project.ProjectID);
             context.Entry(Project).State = EntityState.Modified;
             context.SaveChanges();
             return Project;

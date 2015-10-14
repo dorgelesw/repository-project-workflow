@@ -24,5 +24,10 @@ namespace p7cSarlWF.Models.Repository
         Ressource GetRessourceByID(int id);
 
         void SaveFichier(Fichier fichier);
+        bool DeleteType(int id);
+
+        void DestroyType(int id);
+
+        Ressource UpdateRessource(Ressource Ressource);
     }
 }

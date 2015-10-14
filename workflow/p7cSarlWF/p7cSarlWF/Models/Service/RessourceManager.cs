@@ -67,5 +67,24 @@ namespace p7cSarlWF.Models.Service
         {
             Repository.SaveFichier(fichier);
         }
+
+        public bool DeleteType(int id)
+        {
+            List<Ressource> ressources = GetAllRessourcesByType(id);
+            if (ressources.Count == 0)
+            {
+                Repository.DestroyType(id);
+                return true;
+            }
+            else
+            {
+                return Repository.DeleteType(id);
+            }
+        }
+
+        public Ressource UpdateRessource(Ressource Ressource)
+        {
+            return Repository.UpdateRessource(Ressource);
+        }
     }
 }
