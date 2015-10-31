@@ -227,10 +227,20 @@ namespace p7cSarlWF.Controllers
             return RedirectToAction("RessourceList", new { id = typeID });
         }
 
+        /**
+         * Suppression d'un type de ressource
+         * */
         public ActionResult DeleteType(int id)
         {
             bool boo = RessourceManager.DeleteType(id);
             return RedirectToAction("TypeList");
+        }
+
+        public ActionResult Delete(int id)
+        {
+            Ressource Ressource = RessourceManager.GetRessourceByID(id);
+            bool boo = RessourceManager.Delete(id);
+            return RedirectToAction("RessourceList", new { id = Ressource.TypeRessourceID });
         }
 
         public RessourceController()

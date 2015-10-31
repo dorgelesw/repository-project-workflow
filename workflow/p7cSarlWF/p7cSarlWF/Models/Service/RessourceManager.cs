@@ -86,5 +86,10 @@ namespace p7cSarlWF.Models.Service
         {
             return Repository.UpdateRessource(Ressource);
         }
+
+        public bool Delete(int id)
+        {
+            return Repository.Delete(id);
+        }
     }
 }

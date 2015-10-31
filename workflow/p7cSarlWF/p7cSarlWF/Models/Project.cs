@@ -36,13 +36,13 @@ namespace p7cSarlWF.Models
         [Required(ErrorMessage="Please specify start date")]
         [DisplayName("Start Date")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "dd/MM/yyyy")]
+        [DisplayFormat(DataFormatString = "MM/dd/yyyy")]
         public DateTime StartDate { get; set; }
 
         [Required(ErrorMessage = "Please specify end date")]
         [DisplayName("End Date")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "dd/MM/yyyy")]
+        [DisplayFormat(DataFormatString = "MM/dd/yyyy")]
         public DateTime EndDate { get; set; }
 
         [Required]

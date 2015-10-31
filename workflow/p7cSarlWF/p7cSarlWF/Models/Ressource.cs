@@ -29,5 +29,7 @@ namespace p7cSarlWF.Models
 
         //une ressource peut être associée à plusieurs projet
         public virtual List<ProjectRessource> ProjectRessources { get; set; }
+
+        public bool deleted { get; set; }
     }
 }

@@ -1,107 +1,211 @@
 ﻿@model p7cSarlWF.Models.Client
 
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
+@section head{
+    <link href="~/Content/css/select/select2.min.css" rel="stylesheet" />
+    <link href="~/Content/css/switchery/switchery.min.css" rel="stylesheet" />
+    <link href="~/Content/css/editor/external/google-code-prettify/prettify.css" rel="stylesheet" />
+    <link href="~/Content/css/editor/index.css" rel="stylesheet" />
+    <link href="~/Content/css/switchery/switchery.min.css" rel="stylesheet" />
+}
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Edit</title>
-</head>
-<body>
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-        
-        <div class="form-horizontal">
-            <h4>Client</h4>
-            <hr />
-            @Html.ValidationSummary(true)
-            @Html.HiddenFor(model => model.UtilisateurID)
-    
-            @Html.HiddenFor(model => model.Activated)
-
-            @Html.HiddenFor(model => model.ActivationCode)
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Civilite, new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Civilite)
-                    @Html.ValidationMessageFor(model => model.Civilite)
+<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>
+                Gestion des clients
+            </h3>
+        </div>
+        <div class="title_right">
+            @Html.Partial("_Search")
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Mise à jour : @Model.Username</h2>
+                    <div class="clearfix"></div>
                 </div>
-            </div>
+                <div class="x_content">
+                    @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-horizontal form-label-left input_mask", novalidate = "novalidate" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <p>
+                            Les champs avec un asterisque (*) sont obligatoires
+                        </p>
 
-            @Html.HiddenFor(model => model.CreatedAt)
+                        @Html.ValidationSummary(true)
+                        @Html.HiddenFor(model => model.UtilisateurID)
+                        @Html.HiddenFor(model => model.Activated)
+                        @Html.HiddenFor(model => model.ActivationCode)
+                        @Html.HiddenFor(model => model.ProfilID)
+                        @Html.HiddenFor(model => model.CreatedAt)
+                        @Html.HiddenFor(model => model.ParentID)
+                        @Html.HiddenFor(model => model.ResetPasswordCode)
+                        @Html.HiddenFor(model => model.UpdatedAt)
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.email, new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.email)
-                    @Html.ValidationMessageFor(model => model.email)
-                </div>
-            </div>
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Civilite">
+                                Civilité <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <select id="Civilite" name="Civilite" class="form-control col-md-7 col-xs-12 required select_civilite" required="required">
+                                    <option value="Mr.">Monsieur</option>
+                                    <option value="Mme.">Madame</option>
+                                    <option value="Mlle.">Mademoiselle</option>
+                                </select>
+                                @Html.ValidationMessageFor(model => model.Civilite)
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="FirstName">
+                                Nom <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input value="@Model.FirstName" id="FirstName" class="form-control col-md-7 col-xs-12" name="FirstName" placeholder="Nom de l'utilisateur" required="required" type="text">
+                                @Html.ValidationMessageFor(model => model.FirstName)
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">
+                                Prénom <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input value="@Model.LastName" id="LastName" class="form-control col-md-7 col-xs-12" name="LastName" placeholder="Prénom de l'utilisateur" required="required" type="text">
+                                @Html.ValidationMessageFor(model => model.LastName)
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">
+                                Email <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input value="@Model.email" type="email" id="email" name="email" required="required" class="form-control col-md-7 col-xs-12" placeholder="Email de l'utilisateur">
+                                @Html.ValidationMessageFor(model => model.email)
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Username">
+                                Login <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input value="@Model.Username" id="Username" readonly="readonly" class="form-control col-md-7 col-xs-12" name="Username" placeholder="Login de l'utilisateur" required="required" type="text">
+                                @Html.ValidationMessageFor(model => model.Username)
+                            </div>
+                        </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.FirstName, new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.FirstName)
-                    @Html.ValidationMessageFor(model => model.FirstName)
-                </div>
-            </div>
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Password">
+                                Mot de passe <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input value="@Model.Password" id="Password" type="password" name="Password" data-validate-length-range="6" class="form-control col-md-7 col-xs-12" required="required" placeholder="Saisissez le mot de passe">
+                                @Html.ValidationMessageFor(model => model.Password)
+                            </div>
+                        </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.LastName, new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.LastName)
-                    @Html.ValidationMessageFor(model => model.LastName)
-                </div>
-            </div>
+                        <div class="item form-group">
+                            <label for="password2" class="control-label col-md-3 col-sm-3 col-xs-12">Confirmez mot de passe <span class="required">*</span></label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input value="@Model.Password" id="password2" type="password" name="password2" data-validate-linked="Password" class="form-control col-md-7 col-xs-12" required="required" placeholder="Re-saisissez le mot de passe">
+                            </div>
+                        </div>
+                        
+                        <div class="item form-group" >
+                                <label for="TypeClient" class="control-label col-md-3 col-sm-3 col-xs-12">Type du client <span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select id="TypeClient" name="TypeClient" class="form-control col-md-7 col-xs-12 required" required="required">
+                                        <option value="Physique">Personne physique</option>
+                                        <option value="Morale">Personne morale</option>
+                                    </select>
+                                    @Html.ValidationMessageFor(model => model.TypeClient)
+                                </div>                                
+                            </div> 
 
-            @Html.HiddenFor(model => model.ParentID)
+                        <div class="ln_solid"></div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-3">
+                                <button type="submit" class="btn btn-primary">Annuler</button>
+                                <button id="send" type="submit" class="btn btn-success">Enregistrer</button>
+                            </div>
+                        </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Password, new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Password)
-                    @Html.ValidationMessageFor(model => model.Password)
-                </div>
-            </div>
-
-            @Html.HiddenFor(model => model.ResetPasswordCode)
-
-            @Html.HiddenFor(model => model.UpdatedAt)
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Username, new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Username)
-                    @Html.ValidationMessageFor(model => model.Username)
-                </div>
-            </div>
-
-            @Html.HiddenFor(model => model.ProfilID)
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.TypeClient, new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.TypeClient)
-                    @Html.ValidationMessageFor(model => model.TypeClient)
-                </div>
-            </div>
-    
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Save" class="btn btn-default" />
+                    }
                 </div>
             </div>
         </div>
-    }
-    
-    <div>
-        @Html.ActionLink("Back to List", "Index")
     </div>
-</body>
-</html>
+</div>
+
+@section script{
+    <script src="~/Scripts/js/validator/validator.js"></script>
+    <script src="~/Scripts/js/select/select2.full.js"></script>
+    <script src="~/Scripts/js/textarea/autosize.min.js"></script>
+    <script src="~/Scripts/js/autocomplete/countries.js"></script>
+    <script src="~/Scripts/js/autocomplete/jquery.autocomplete.js"></script>
+    <script>
+        autosize($('.resizable_textarea'));
+        $(document).ready(function () {
+            $(".select_civilite").select2({
+                placeholder: "Choisir la civilité",
+                allowClear: true
+            });
+        });
+    </script>
+
+
+
+    <script>
+        // initialize the validator function
+        validator.message['date'] = 'not a real date';
+        // validate a field on "blur" event, a 'select' on 'change' event & a '.reuired' classed multifield on 'keyup':
+        $('form')
+            .on('blur', 'input[required], input.optional, select.required', validator.checkField)
+            .on('change', 'select.required', validator.checkField)
+            .on('keypress', 'input[required][pattern]', validator.keypress);
+
+        $('.multi.required')
+            .on('keyup blur', 'input', function () {
+                validator.checkField.apply($(this).siblings().last()[0]);
+            });
+
+        // bind the validation to the form submit event
+        //$('#send').click('submit');//.prop('disabled', true);
+
+        $('form').submit(function (e) {
+            e.preventDefault();
+
+            var submit = true;
+            // evaluate the form using generic validaing
+            if (!validator.checkAll($(this))) {
+                submit = false;
+            }
+
+            if (submit) {
+                NProgress.start();
+                this.submit();
+            }
+            else {
+                new PNotify({
+                    title: "Formulaire incomplet",
+                    type: "error",
+                    text: "Veuillez vérifier le formulaire et saisir les champs obligatoires.",
+                    nonblock: {
+                        nonblock: true
+                    }
+                });
+
+            }
+
+            return false;
+        });
+
+
+    </script>
+
+}

@@ -98,6 +98,12 @@ namespace p7cSarlWF.Controllers
             }
             else
             {
+                List<Client> clients = ClientManager.GetListeAllClient();
+                List<Utilisateur> Utilisateurs = UtilisateurManager.GetListeAllUtilisateur();
+                List<Project> Projects = ProjectManager.GetAllProjects();
+                ViewBag.Clients = clients;
+                ViewBag.Utilisateurs = Utilisateurs;
+                ViewBag.Projects = Projects;
                 return View(Project);
             }
         }

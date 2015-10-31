@@ -14,7 +14,7 @@ namespace p7cSarlWF.Models.Repository
     {
         private static WorkFlowContext context
         {
-            get{ return  new WorkFlowContext(); }
+            get { return new WorkFlowContext(); }
         }
 
         public List<TypeRessource> GetAllTypesRessources()
@@ -34,7 +34,7 @@ namespace p7cSarlWF.Models.Repository
 
         public List<Ressource> GetAllRessourcesByType(int TypeRessourceID)
         {
-            return context.Ressources.Where(r => r.TypeRessourceID == TypeRessourceID).ToList();
+            return context.Ressources.Where(r => r.TypeRessourceID == TypeRessourceID && r.deleted==false).ToList();
         }
         
         public TypeRessource SaveTypeRessource(TypeRessource type)
@@ -107,6 +107,29 @@ namespace p7cSarlWF.Models.Repository
             return true;
         }
 
+        public bool Delete(int id)
+        {
+            WorkFlowContext ctx = new WorkFlowContext();
+            List<ProjectRessource> projectRessources = ctx.ProjectRessources.Where(pr => pr.RessourceID == id).ToList();
+            if (projectRessources != null & projectRessources.Count != 0)
+            {
+                //la ressource a déjà été affecté à des projets, on change juste son statut
+                Ressource ressource = ctx.Ressources.Find(id);
+                ressource.deleted = true;
+                ctx.Entry(ressource).State = EntityState.Modified;
+                ctx.SaveChanges();
+                return true;
+            }
+            else
+            {
+                // la ressource n'a pas encore été affecté à des projets, on peut simplement la supprimer de la BD
+                Ressource ressource = ctx.Ressources.Find(id);
+                ctx.Ressources.Remove(ressource);
+                ctx.SaveChanges();
+                return true;
+            }
+        }
+
         public void DestroyType(int id)
         {
             WorkFlowContext ctx = new WorkFlowContext();
@@ -120,7 +143,7 @@ namespace p7cSarlWF.Models.Repository
         {
             WorkFlowContext contex = new WorkFlowContext();
             contex.Entry(Ressource).State = EntityState.Modified;
-            context.SaveChanges();
+            contex.SaveChanges();
             return Ressource;
         }
     }

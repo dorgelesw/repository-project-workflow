@@ -66,9 +66,21 @@ namespace p7cSarlWF.Models.Repository
         {
             WorkFlowContext context = new WorkFlowContext();
             Utilisateur Utilisateur = context.Utilisateurs.Find(id);
-            Utilisateur.deleted = true;
-            context.Entry(Utilisateur).State = EntityState.Modified;
-            context.SaveChanges();
+
+            List<Project> projets = Utilisateur.Projects;
+            if (projets == null || projets.Count == 0)
+            {
+                //L'utilisateur n'est lié as aucun projet, je le supprime en dur
+                Utilisateur.deleted = true;
+                context.Entry(Utilisateur).State = EntityState.Modified;
+                context.SaveChanges();
+            }
+            else
+            {
+                //l'utilisateur est lié à des projets
+
+            }
+                       
             return Utilisateur;
         }
 

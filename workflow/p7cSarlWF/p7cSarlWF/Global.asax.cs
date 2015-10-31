@@ -9,6 +9,8 @@ using System.Web.SessionState;
 using System.Web.Http;
 using System.Data.Entity;
 using p7cSarlWF.Models.Context;
+using p7cSarlWF.App_Start;
+using System.Web.Optimization;
 
 namespace p7cSarlWF
 {
@@ -23,7 +25,8 @@ namespace p7cSarlWF
 
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);            
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+            //BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
     }
 }

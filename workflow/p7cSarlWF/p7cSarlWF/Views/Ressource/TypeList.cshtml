@@ -70,7 +70,7 @@
                     @Html.ActionLink("Ressources(" + item.Ressources.Count + ")", "RessourceList", new { id = item.TypeRessourceID }) |
                     @Html.ActionLink("Edit", "EditType", new { TypeRessourceID = item.TypeRessourceID }) |
                     @*@Html.ActionLink("Details", "Details", new { id = item.TypeRessourceID }) |*@
-                    @Html.ActionLink("Delete", "Delete", new { id = item.TypeRessourceID }, new { @class = "delete" })
+                    @Html.ActionLink("Delete", "DeleteType", new { id = item.TypeRessourceID }, new { @class = "delete" })
                 </td>
             </tr>
         }

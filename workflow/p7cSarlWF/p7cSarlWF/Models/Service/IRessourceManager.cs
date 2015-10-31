@@ -29,5 +29,7 @@ namespace p7cSarlWF.Models.Service
         bool DeleteType(int id);
 
         Ressource UpdateRessource(Ressource Ressource);
+
+        bool Delete(int id);
     }
 }

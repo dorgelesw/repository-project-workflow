@@ -29,5 +29,6 @@ namespace p7cSarlWF.Models.Repository
         void DestroyType(int id);
 
         Ressource UpdateRessource(Ressource Ressource);
+        bool Delete(int id);
     }
 }

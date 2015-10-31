@@ -1,0 +1,64 @@
+﻿@*<div class="navbar nav_title" style="border: 0;">
+    <a href="#" class="site_title">@*<i class="fa fa-paw"></i> <span>WORKFLOW</span></a>
+</div>
+<div class="clearfix"></div>*@
+
+<!-- menu prile quick info -->
+<div class="profile">
+    <div class="profile_pic">
+        <img src="~/images/user.png" alt="..." class="img-circle profile_img">
+    </div>
+    <div class="profile_info">
+        <span>Bienvenue,</span>
+        <h2>Administrateur</h2>
+    </div>
+</div>
+<!-- /menu prile quick info -->
+
+<br />
+
+<!-- sidebar menu -->
+<div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+
+    <div class="menu_section">
+        <h3>@*General*@</h3>
+        <ul class="nav side-menu">            
+            <li>
+                <a href="#"><i class="fa fa-home"></i> Tableau de bord @*<span class="fa fa-chevron-down"></span>*@</a>                
+            </li>            
+            <li>
+                <a><i class="fa fa-users"></i> Personnes <span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu" style="display: none">
+                    <li><a href="@Url.Action("Index", "Client", null)">Clients</a></li>
+                    <li><a href="@Url.Action("Index", "Utilisateur", null)">Utilisateurs</a></li>
+                    <li>@Html.ActionLink("Nouvel utilisateur", "Create", "Utilisateur")</li>
+                    <li>@Html.ActionLink("Nouveau Client", "CreateClient", "Client")</li>
+                </ul>
+            </li> 
+            
+            <li>
+                <a><i class="fa fa-tasks"></i> Projets <span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu" style="display: none">
+                    <li><a href="@Url.Action("Index", "Project", null)">Projets</a></li>
+                </ul>
+            </li>
+            <li>
+                <a><i class="fa fa-desktop"></i> Ressources <span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu" style="display: none">
+                    <li><a href="@Url.Action("TypeList", "Ressource", null)">Types Ressources</a></li>
+                </ul>
+            </li>
+                 
+        </ul>
+    </div>
+    
+
+</div>
+<!-- /sidebar menu -->
+<!-- /menu footer buttons -->
+<div class="sidebar-footer hidden-small">
+    <a data-toggle="tooltip" data-placement="top" title="Déconnexion">
+        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+    </a>
+</div>
+<!-- /menu footer buttons -->

@@ -1,119 +1,129 @@
 ﻿@model IEnumerable<p7cSarlWF.Models.Utilisateur>
 
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
+<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>Liste des utilisateurs</h3>
+        </div>
+        <div class="title_right">
+            @Html.Partial("_Search")
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="x_panel">
+                <div class="x_content">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12" style="text-align:center;">
+                            <ul class="pagination pagination-split">
+                                <li>
+                                    <a href="#">A</a>
+                                </li>
+                                <li>
+                                    <a href="#">B</a>
+                                </li>
+                                <li>
+                                    <a href="#">C</a>
+                                </li>
+                                <li>
+                                    <a href="#">D</a>
+                                </li>
+                                <li>
+                                    <a href="#">E</a>
+                                </li>
+                                <li>...</li>
+                                <li>
+                                    <a href="#">W</a>
+                                </li>
+                                <li>
+                                    <a href="#">X</a>
+                                </li>
+                                <li>
+                                    <a href="#">Y</a>
+                                </li>
+                                <li>
+                                    <a href="#">Z</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="clearfix"></div>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
-    <link href="~/Content/bootstrap-datetimepicker.min.css" rel="stylesheet" />    
-    <link href="~/Content/pnotify.custom.css" rel="stylesheet" />
-    <link href="~/Content/animate.css" rel="stylesheet" />
-    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
-    <link href="~/Content/craftpip-jquery-confirm/jquery-confirm.css" rel="stylesheet" />    
-    <title>Index</title>
-</head>
-<body>
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="@Url.Action("Index", "Project", null)">Projets</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="@Url.Action("TypeList", "Ressource", null)">Types Ressources</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="@Url.Action("Index", "Client", null)">Clients</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="@Url.Action("Index", "Utilisateur", null)">Utilisateurs</a></li>
-                            <li role="separator" class="divider"></li>
-                        </ul>
-                    </li>
-                </ul>
+                        
+                        
+                        @foreach (var item in Model) {
+                            <div class="col-md-4 col-sm-4 col-xs-12 animated fadeInDown">
+                                <div class="well profile_view">
+                                    <div class="col-sm-12">
+                                        <div class="x_title">
+                                            <h2>@Html.Raw(item.Civilite + " " + item.FirstName + " " + item.LastName)</h2>
+                                            <ul class="nav navbar-right panel_toolbox">
+                                                <li class="dropdown">
+                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i> Options</a>
+                                                    <ul class="dropdown-menu" role="menu">
+                                                        <li>
+                                                            <a href="@Url.Action("Edit", new { id = item.UtilisateurID })"><i class="fa fa-edit"></i> Modifier</a>
+                                                            
+                                                        </li>
+                                                        <li>
+                                                            <a href="@Url.Action("Delete", new { id = item.UtilisateurID })" class="delete"><i class="fa fa-trash"></i> Supprimer</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+
+                                            </ul>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="left col-xs-7">
+                                            <h2>@item.Username</h2>
+                                            
+                                            <ul class="list-unstyled">
+                                                <li><i class="fa fa-mobile-phone"></i>&nbsp;@Html.Raw(item.Profil.MobPhone) </li>
+                                                <li><i class="fa fa-phone"></i>&nbsp;@item.Profil.OfficePhone </li>
+                                                <li><i class="fa fa-envelope"></i>&nbsp;@item.email </li>
+                                                <li><i class="fa fa-external-link-square"></i> @item.Profil.Website </li>
+                                            </ul>
+                                        </div>
+                                        <div class="right col-xs-5 text-center">
+                                            <img src="~/images/user.png" alt="" class="img-circle img-responsive">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 bottom text-center">
+                                        <div class="col-xs-12 col-sm-4 emphasis">
+                                            <p class="ratings">
+                                                <a href="#" title="@item.Profil.Facebook"><span class="fa fa-facebook-square"></span></a>
+                                                <a href="#" title="@item.Profil.Skype"><span class="fa fa-skype"></span></a>
+                                                <a href="#" title="@item.Profil.Googleplus"><span class="fa fa-google-plus-square"></span></a>
+                                                <a href="#" title="@item.Profil.Linkedin"><span class="fa fa-linkedin-square"></span></a>
+                                                <a href="#" title="@item.Profil.Twitter"><span class="fa fa-twitter-square"></span></a>
+                                            </p>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-8 emphasis">
+                                            <a class="btn btn-success btn-xs">
+                                                <i class="fa fa-user">
+                                                </i> <i class="fa fa-comments-o"></i>
+                                                Activités
+                                            </a>
+                                            <a class="btn btn-primary btn-xs">
+                                                <i class="fa fa-user">
+                                                </i> Voir le profil
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        } 
+                        
+                        
+                        
+                        
+                    </div>
+                </div>
             </div>
         </div>
-    </nav>
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
-        <tr>
-            
-            <th>
-                @Html.DisplayNameFor(model => model.Civilite)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedAt)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LastName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UpdatedAt)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Username)
-            </th>
-            <th></th>
-        </tr>
-    
-    @foreach (var item in Model) {
-        <tr>
-                      
-            <td>
-                @Html.DisplayFor(modelItem => item.Civilite)
-            </td>
-            <td>
-                @Html.Raw(item.CreatedAt.ToString("MMMM dd, yyyy"))
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>            
-            <td>
-                @Html.Raw(item.UpdatedAt.ToString("MMMM dd, yyyy"))
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Username)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.UtilisateurID }) |
-                @Html.ActionLink("Details", "Details", new { id=item.UtilisateurID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.UtilisateurID }, new { @class = "delete" })
-            </td>
-        </tr>
-    }
-    
-    </table>
-</body>
-</html>
-<script src="~/Scripts/jquery-2.1.4.min.js"></script>
-<script src="~/Scripts/moment.min.js"></script>
-<script src="~/Scripts/bootstrap.min.js"></script>
-<script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
-<script src="~/Scripts/craftpip-jquery-confirm/highlight.min.js"></script>
-<script src="~/Scripts/craftpip-jquery-confirm/jquery-confirm.js"></script>
-<script src="~/Scripts/craftpip-jquery-confirm/pretty.js"></script>
-<script src="~/Scripts/pnotify.custom.js"></script>
-<script src="~/Scripts/script.js"></script>
+    </div>
+</div>
