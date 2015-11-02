@@ -108,6 +108,11 @@ namespace p7cSarlWF.Controllers
             }
         }
 
+        public ActionResult Delete(int id)
+        {
+            Project Project = ProjectManager.Delete(id);
+            return RedirectToAction("Index");
+        }
 
         public ProjectController()
         {

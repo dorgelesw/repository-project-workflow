@@ -193,6 +193,7 @@ namespace p7cSarlWF.Controllers
 
                 //RessourceManager.SaveRessource(Ressource);
                 return RedirectToAction("TypeList");
+                return RedirectToAction("RessourceList", new { id = type.TypeRessourceID });
             }
 
 
@@ -206,6 +207,9 @@ namespace p7cSarlWF.Controllers
             Ressource Ressource = RessourceManager.GetRessourceByID(id);
             if (Ressource != null)
             {
+                List<TypeRessource> TypesRessources = RessourceManager.GetAllTypesRessources();
+                ViewBag.Utilisateurs = UtilisateurManager.GetListeAllUtilisateur();
+                ViewBag.TypesRessources = TypesRessources;
                 return View(Ressource);
             }
             else

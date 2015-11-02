@@ -27,8 +27,12 @@
                             <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                            
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i> Options</a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    @Html.ActionLink("Nouveau Projet", "Create")
+                                </li>
+                            </ul> 
                         </li>
                     </ul>
                     <div class="clearfix"></div>
@@ -68,16 +72,19 @@
                                     <td>
                                         <ul class="list-inline">
                                             <li>
-                                                <img src="http://localhost/personal/njoroge/assets3/img.jpg" class="avatar" alt="Avatar">
+                                                <img src="http://localhost/personal/njoroge/assets3/img.jpg" class="avatar" alt="Avatar 1">
                                             </li>
                                             <li>
-                                                <img src="http://localhost/personal/njoroge/assets3/img.jpg" class="avatar" alt="Avatar">
+                                                <img src="http://localhost/personal/njoroge/assets3/img.jpg" class="avatar" alt="Avatar 2">
                                             </li>
                                             <li>
-                                                <img src="http://localhost/personal/njoroge/assets3/img.jpg" class="avatar" alt="Avatar">
+                                                <img src="http://localhost/personal/njoroge/assets3/img.jpg" class="avatar" alt="Avatar 3">
                                             </li>
                                             <li>
-                                                <img src="http://localhost/personal/njoroge/assets3/img.jpg" class="avatar" alt="Avatar">
+                                                <img src="http://localhost/personal/njoroge/assets3/img.jpg" class="avatar" alt="Avatar 4">
+                                            </li>
+                                            <li>
+                                                <img src="http://localhost/personal/njoroge/assets3/img.jpg" class="avatar" alt="...">
                                             </li>
                                         </ul>
                                     </td>
@@ -85,7 +92,7 @@
                                         <div class="progress progress_sm">
                                             <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="10"></div>
                                         </div>
-                                        <small>10% Complete</small>
+                                        <small>10% de progression</small>
                                     </td>
                                     <td>
                                         <button type="button" class="btn btn-success btn-xs">Actif</button>

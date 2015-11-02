@@ -1,93 +1,143 @@
 ﻿@model IEnumerable<p7cSarlWF.Models.Ressource>
-
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@section head{
+    <link href="~/Content/css/icheck/flat/green.css" rel="stylesheet" />
+    <link href="~/Content/css/datatables/tools/css/dataTables.tableTools.css" rel="stylesheet" />
+}
+<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>Gestion des ressources</h3>
+        </div>
+        <div class="title_right">
+            @Html.Partial("_Search")
+        </div>
+    </div>
+    <div class="clearfix"></div>
 
-<!DOCTYPE html>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Liste des ressources du type: </h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i> Options</a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    @Html.ActionLink("Nouvelle ressource", "Create")
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <table id="example" class="table table-striped responsive-utilities jambo_table">
+                        <thead>
+                            <tr class="headings">
+                                <th>
+                                    <input type="checkbox" class="tableflat">
+                                </th>
+                                <th>
+                                    Nom
+                                </th>
+                                <th>
+                                    Description
+                                </th>
+                                <th>
+                                    Type
+                                </th>
+                                <th class=" no-link last">
+                                    <span class="nobr"></span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr class="even pointer">
+                                    <td class="a-center "><input type="checkbox" class="tableflat"></td>
+                                    <td class=" ">@Html.DisplayFor(modelItem => item.RessourceName)</td>
+                                    <td class=" ">@Html.DisplayFor(modelItem => item.RessourceDescription)</td>
+                                    <td class=" ">@Html.DisplayFor(modelItem => item.TypeRessource.TypeName)</td>
+                                    <td class=" last">
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
-    <link href="~/Content/bootstrap-datetimepicker.min.css" rel="stylesheet" />
-    <link href="~/Content/pnotify.custom.css" rel="stylesheet" />
-    <link href="~/Content/animate.css" rel="stylesheet" />
-    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
-    <link href="~/Content/craftpip-jquery-confirm/jquery-confirm.css" rel="stylesheet" />  
-    <title>RessourceList</title>
-</head>
-<body>
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="@Url.Action("Index", "Project", null)">Projets</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="@Url.Action("TypeList", "Ressource", null)">Types Ressources</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="@Url.Action("Index", "Client", null)">Clients</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="@Url.Action("Index", "Utilisateur", null)">Utilisateurs</a></li>
-                            <li role="separator" class="divider"></li>
-                        </ul>
-                    </li>
-                </ul>
+                                        <a href='@Url.Action("Edit", new { id = item.RessourceID })' class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Modifier </a>
+                                        <a href='@Url.Action("Delete", new { id = item.RessourceID })' class="btn btn-danger btn-xs delete"><i class="fa fa-trash-o"></i> Supprimer </a>
+
+                                    </td>
+                                </tr>
+
+                            }
+
+
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-    </nav>
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.TypeRessource.TypeDescription)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RessourceDescription)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RessourceName)
-            </th>
-            <th></th>
-        </tr>
-    
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TypeRessource.TypeDescription)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RessourceDescription)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RessourceName)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.RessourceID }) |
-                @*@Html.ActionLink("Details", "Details", new { id=item.RessourceID }) |*@
-                @Html.ActionLink("Delete", "Delete", new { id = item.RessourceID }, new {@class="delete" })
-            </td>
-        </tr>
-    }
-    
-    </table>
-</body>
-</html>
-<script src="~/Scripts/jquery-2.1.4.min.js"></script>
-<script src="~/Scripts/moment.min.js"></script>
-<script src="~/Scripts/bootstrap.min.js"></script>
-<script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
-<script src="~/Scripts/craftpip-jquery-confirm/highlight.min.js"></script>
-<script src="~/Scripts/craftpip-jquery-confirm/jquery-confirm.js"></script>
-<script src="~/Scripts/craftpip-jquery-confirm/pretty.js"></script>
-<script src="~/Scripts/pnotify.custom.js"></script>
-<script src="~/Scripts/script.js"></script>
+        <br />
+        <br />
+        <br />
+    </div>
+
+</div>
+
+@section script{
+    <script src="~/Scripts/js/icheck/icheck.min.js"></script>
+    <!-- Datatables -->
+    <script src="~/Scripts/js/datatables/js/jquery.dataTables.js"></script>
+    <script src="~/Scripts/js/datatables/tools/js/dataTables.tableTools.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('input.tableflat').iCheck({
+                checkboxClass: 'icheckbox_flat-green',
+                radioClass: 'iradio_flat-green'
+            });
+        });
+
+        var asInitVals = new Array();
+        $(document).ready(function () {
+            var oTable = $('#example').dataTable({
+                "oLanguage": {
+                    "sSearch": "Filtrer les colonnes:"
+                },
+                "aoColumnDefs": [
+                    {
+                        'bSortable': false,
+                        'aTargets': [0]
+                    } //disables sorting for column one
+                ],
+                'iDisplayLength': 12,
+                "sPaginationType": "full_numbers",
+                "dom": 'T<"clear">lfrtip',
+                "tableTools": {
+                    "sSwfPath": "../Scripts/js/datatables/tools/swf/copy_csv_xls_pdf.swf"
+                }
+            });
+            $("tfoot input").keyup(function () {
+                /* Filter on the column based on the index of this element's parent <th> */
+                oTable.fnFilter(this.value, $("tfoot th").index($(this).parent()));
+            });
+            $("tfoot input").each(function (i) {
+                asInitVals[i] = this.value;
+            });
+            $("tfoot input").focus(function () {
+                if (this.className == "search_init") {
+                    this.className = "";
+                    this.value = "";
+                }
+            });
+            $("tfoot input").blur(function (i) {
+                if (this.value == "") {
+                    this.className = "search_init";
+                    this.value = asInitVals[$("tfoot input").index(this)];
+                }
+            });
+        });
+    </script>
+
+}

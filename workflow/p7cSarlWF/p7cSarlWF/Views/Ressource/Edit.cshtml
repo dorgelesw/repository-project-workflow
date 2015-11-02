@@ -1,55 +1,152 @@
 ﻿@model p7cSarlWF.Models.Ressource
-
 @{
-    Layout = null;
+    var TypesRessources = (List<p7cSarlWF.Models.TypeRessource>)ViewBag.TypesRessources;
+}
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
+@section head{
+    <link href="~/Content/css/select/select2.min.css" rel="stylesheet" />
+    <link href="~/Content/css/switchery/switchery.min.css" rel="stylesheet" />
+    <link href="~/Content/css/editor/external/google-code-prettify/prettify.css" rel="stylesheet" />
+    <link href="~/Content/css/editor/index.css" rel="stylesheet" />
+    <link href="~/Content/css/switchery/switchery.min.css" rel="stylesheet" />
+}
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Edit</title>
-</head>
-<body>
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-        
-        <div class="form-horizontal">
-            <h4>Ressource</h4>
-            <hr />
-            @Html.ValidationSummary(true)
-            @Html.HiddenFor(model => model.RessourceID)
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.RessourceDescription, new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.RessourceDescription)
-                    @Html.ValidationMessageFor(model => model.RessourceDescription)
+<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>
+                Gestion des ressources
+            </h3>
+        </div>
+        <div class="title_right">
+            @Html.Partial("_Search")
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Mise à jour de la ressource</h2>
+                    <div class="clearfix"></div>
                 </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.RessourceName, new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.RessourceName)
-                    @Html.ValidationMessageFor(model => model.RessourceName)
-                </div>
-            </div>
-    
-            @Html.HiddenFor(model => model.TypeRessourceID)
-                
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Save" class="btn btn-default" />
+                <div class="x_content ">
+                    @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-horizontal form-label-left input_mask", novalidate = "novalidate", enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="animated fadeInDown">
+                            <p>
+                                Les champs avec un asterisque (*) sont obligatoires
+                            </p>
+                            @Html.ValidationSummary(true)
+
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="StartDate">
+                                    Nom de la ressource <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input id="RessourceName" class="form-control col-md-7 col-xs-12" name="RessourceName" required="required" type="text" value="@Model.RessourceName">
+                                    @Html.ValidationMessageFor(model => model.RessourceName)
+                                </div>
+                            </div>
+                                                        
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="RessourceDescription">
+                                    Description<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <textarea id="RessourceDescription" name="RessourceDescription" class="resizable_textarea form-control required" placeholder="Veuillez saisir toute la description" style="width: 100%; overflow: hidden; word-wrap: break-word; resize: horizontal; height: 87px;" required="required">@Model.RessourceDescription</textarea>
+                                </div>
+                            </div>
+                            
+                            @Html.HiddenFor(model => model.RessourceID)
+                            @Html.HiddenFor(model => model.TypeRessourceID)
+                            <div class="ln_solid"></div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-md-offset-3">
+                                    <button id="send" type="submit" class="btn btn-success">Enregistrer</button>
+                                </div>
+                            </div>
+                        </div>
+                    }
                 </div>
             </div>
         </div>
-    }
-    
-    <div>
-        @Html.ActionLink("Back to List", "Index")
     </div>
-</body>
-</html>
+</div>
+
+
+@section script{
+    <script src="~/Scripts/js/validator/validator.js"></script>
+    <script src="~/Scripts/js/select/select2.full.js"></script>
+    <script src="~/Scripts/js/textarea/autosize.min.js"></script>
+    <script src="~/Scripts/js/autocomplete/countries.js"></script>
+    <script src="~/Scripts/js/autocomplete/jquery.autocomplete.js"></script>
+    <script>
+        autosize($('.resizable_textarea'));
+        $(document).ready(function () {
+
+            $(".select_civilite").select2({
+                placeholder: "Choisir le type de ressource",
+                allowClear: true
+            });
+        });
+
+    </script>
+
+
+
+    <script>
+        // initialize the validator function
+        validator.message['date'] = 'not a real date';
+        // validate a field on "blur" event, a 'select' on 'change' event & a '.reuired' classed multifield on 'keyup':
+        $('form')
+            .on('blur', 'input[required], input.optional, select.required', validator.checkField)
+            .on('change', 'select.required', validator.checkField)
+            .on('keypress', 'input[required][pattern]', validator.keypress);
+
+        $('.multi.required')
+            .on('keyup blur', 'input', function () {
+                validator.checkField.apply($(this).siblings().last()[0]);
+            });
+
+        // bind the validation to the form submit event
+        //$('#send').click('submit');//.prop('disabled', true);
+
+        $('form').submit(function (e) {
+            e.preventDefault();
+
+            var submit = true;
+            // evaluate the form using generic validaing
+            if (!validator.checkAll($(this))) {
+                submit = false;
+            }
+
+            if (submit) {
+                NProgress.start();
+                this.submit();
+            }
+            else {
+                new PNotify({
+                    title: "Formulaire incomplet",
+                    type: "error",
+                    text: "Veuillez vérifier le formulaire et saisir les champs obligatoires.",
+                    nonblock: {
+                        nonblock: true
+                    }
+                });
+
+            }
+
+            return false;
+        });
+
+
+    </script>
+
+}
+
+

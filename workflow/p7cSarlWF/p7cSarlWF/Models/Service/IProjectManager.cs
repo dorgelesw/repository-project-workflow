@@ -13,5 +13,7 @@ namespace p7cSarlWF.Models.Service
         Project SaveProject(Project Project);
         Project UpdateProject(Project Project);
         ProjectRessource SaveProjectRessource(ProjectRessource pr);
+
+        Project Delete(int id);
     }
 }

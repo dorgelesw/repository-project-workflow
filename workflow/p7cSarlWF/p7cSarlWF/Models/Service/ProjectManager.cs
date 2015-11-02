@@ -38,7 +38,10 @@ namespace p7cSarlWF.Models.Service
             return Repository.UpdateProject(Project);
         }
 
-
+        public Project Delete(int id)
+        {
+            return Repository.Delete(id);
+        }
 
 
         public ProjectManager()

@@ -13,5 +13,6 @@ namespace p7cSarlWF.Models.Repository
         Project UpdateProject(Project Project);
         Project GetProjectByID(int ProjectID);
         ProjectRessource SaveProjectRessource(ProjectRessource pr);
+        Project Delete(int id);
     }
 }

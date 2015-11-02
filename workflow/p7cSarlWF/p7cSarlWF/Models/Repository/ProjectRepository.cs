@@ -34,7 +34,6 @@ namespace p7cSarlWF.Models.Repository
             WorkFlowContext context = new WorkFlowContext();
             Project = context.Projects.Add(Project);
             context.SaveChanges();
-
             return Project;
         }
 
@@ -48,6 +47,7 @@ namespace p7cSarlWF.Models.Repository
 
         public ProjectRessource SaveProjectRessource(ProjectRessource pr)
         {
+
             WorkFlowContext context = new WorkFlowContext();
             Project Project = context.Projects.Find(pr.ProjectID);
             Project.ProjectRessources.Add(pr);
@@ -55,6 +55,16 @@ namespace p7cSarlWF.Models.Repository
             //pr = context.ProjectRessources.Add(pr);
             context.SaveChanges();
             return pr;
+
+        }
+
+        public Project Delete(int id)
+        {
+            WorkFlowContext context = new WorkFlowContext();
+            Project Project = context.Projects.Find(id);
+            context.Entry(Project).State = EntityState.Deleted;
+            context.SaveChanges();
+            return Project;
         }
 
     }

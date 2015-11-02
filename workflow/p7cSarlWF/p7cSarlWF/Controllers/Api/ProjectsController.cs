@@ -42,6 +42,12 @@ namespace p7cSarlWF.Controllers.Api
             return null;
         }
 
+        // GET api/Comment
+        public List<Project> GetProjects()
+        {
+            return ProjectManager.GetAllProjects();
+        }
+
         public ProjectsController()
         {
             RessourceManager = (IRessourceManager)System.Web.Http.GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(IRessourceManager));
