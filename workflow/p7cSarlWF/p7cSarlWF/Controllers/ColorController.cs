@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace p7cSarlWF.Controllers
 {
-    public class ColorController : Controller
+    public class ColorController : BaseController
     {
         //
         // GET: /Color/

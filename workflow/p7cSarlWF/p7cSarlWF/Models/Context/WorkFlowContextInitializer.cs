@@ -6,7 +6,7 @@ using System.Data.Entity;
 
 namespace p7cSarlWF.Models.Context
 {
-    public class WorkFlowContextInitializer : DropCreateDatabaseAlways<WorkFlowContext> 
+    public class WorkFlowContextInitializer : CreateDatabaseIfNotExists<WorkFlowContext> 
     {
         protected override void Seed(WorkFlowContext context)
         {

@@ -8,7 +8,7 @@
     <div class="page-title">
         <div class="title_left">
             <h3>
-                Gestion des projets
+                @Resources.Resources.ProjectManageTitle
             </h3>
         </div>
         <div class="title_right">
@@ -21,16 +21,16 @@
         <div class="col-md-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Liste des Projects</h2>
+                    <h2>@Resources.Resources.ProjectManageProjectList</h2>
                     <ul class="nav navbar-right panel_toolbox">
                         <li>
                             <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i> Options</a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i> @Resources.Resources.OptionsMenu</a>
                             <ul class="dropdown-menu" role="menu">
                                 <li>
-                                    @Html.ActionLink("Nouveau Projet", "Create")
+                                    @Html.ActionLink(@Resources.Resources.ProjectManageCreateProject, "Create")
                                 </li>
                             </ul> 
                         </li>

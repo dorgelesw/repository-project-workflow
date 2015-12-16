@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace p7cSarlWF.Controllers
 {
-    public class DashboardController : Controller
+    public class DashboardController : BaseController
     {
         public IUtilisateurManager UtilisateurManager { get; set; }
         public IProjectManager ProjectManager { get; set; }

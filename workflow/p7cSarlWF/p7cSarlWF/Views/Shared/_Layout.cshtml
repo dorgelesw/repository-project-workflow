@@ -1,5 +1,10 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+﻿
+@{
+    var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+    //culture = culture.Split(new string{";"})[1];
+}
+<!DOCTYPE html>
+<html lang="@p7cSarlWF.Helpers.CultureHelper.GetCurrentNeutralCulture()" dir="@(p7cSarlWF.Helpers.CultureHelper.IsRighToLeft() ? "rtl" : "")">
 <head>
     <title>WORKFLOW - @ViewBag.Title</title>
 
@@ -19,7 +24,7 @@
     <link href="~/Content/css/maps/jquery-jvectormap-2.0.1.css" rel="stylesheet" />
     <link href="~/Content/css/icheck/flat/green.css" rel="stylesheet" />
     <link href="~/Content/css/floatexamples.css" rel="stylesheet" />
-
+    <link href="~/Content/css/flag-icon.css" rel="stylesheet" />
 
     <script src="~/Scripts/js/jquery-2.1.4.js"></script>
     <script src="~/Scripts/js/nprogress/nprogress.js"></script>
@@ -197,6 +202,31 @@
             $('.notifications a').first().addClass('active');
             $('#notif-group div').first().css('display', 'block');
         });
+
+        $(document).on('click', '.culture', function (e) {
+            e.preventDefault();
+            idculture = $(this).attr("id");
+            var controleur = "@ViewBag.controleur";
+            var action = "@ViewBag.action";
+            var href = $(location).attr("origin") + "/" + idculture + "/"+controleur+"/SetCulture";
+            console.log(href);//.attr('href')
+            //console.log($(location));
+            //return;
+            $.ajax({
+                type: "POST",
+                url: href,
+                async: false,
+                data: {
+                    culture: idculture
+                }
+            }).done(function (data) {
+                window.location.href = $(location).attr("origin") + "/" + data + "/" + controleur + "/" + action;
+            });
+            
+        });
+
+        
+
     })
     /*
     new TabbedNotification({

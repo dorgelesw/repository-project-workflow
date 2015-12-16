@@ -1,4 +1,5 @@
-﻿using System;
+﻿using p7cSarlWF.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,8 +16,9 @@ namespace p7cSarlWF
 
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Dashboard", action = "Index", id = UrlParameter.Optional }
+                url: "{culture}/{controller}/{action}/{id}",
+                //defaults: new { controller = "Dashboard", action = "Index", id = UrlParameter.Optional }
+                defaults: new { culture = CultureHelper.GetDefaultCulture(), controller = "Project", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

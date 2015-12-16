@@ -11,7 +11,7 @@ using System.Web.Mvc;
 
 namespace p7cSarlWF.Controllers
 {
-    public class RessourceController : Controller
+    public class RessourceController : BaseController
     {
         public IRessourceManager RessourceManager { get; set; }
         public IUtilisateurManager UtilisateurManager { get; set; }

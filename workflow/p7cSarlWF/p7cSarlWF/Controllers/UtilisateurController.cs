@@ -9,7 +9,7 @@ using System.Web.Security;
 
 namespace p7cSarlWF.Controllers
 {
-    public class UtilisateurController : Controller
+    public class UtilisateurController : BaseController
     {
         public IUtilisateurManager UtilisateurManager { get; set; }
         //

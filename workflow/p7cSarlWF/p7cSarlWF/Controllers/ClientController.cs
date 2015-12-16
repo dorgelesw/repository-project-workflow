@@ -10,7 +10,7 @@ using System.Web.Security;
 
 namespace p7cSarlWF.Controllers
 {
-    public class ClientController : Controller
+    public class ClientController : BaseController
     {
         public IClientManager ClientManager { get; set; }
         public IUtilisateurManager UtilisateurManager { get; set; }
