@@ -13,6 +13,13 @@ namespace p7cSarlWF.Controllers.Api
     {
         public IUtilisateurManager UtilisateurManager { get; set; }
 
+        // GET api/User
+        [HttpGet]
+        public List<Utilisateur> GetUsers()
+        {
+            return UtilisateurManager.GetListeAllUtilisateur();
+        }
+
         [HttpDelete]
         public Utilisateur Delete(int id)
         {

@@ -17,6 +17,20 @@ namespace p7cSarlWF.Controllers.Api
         public IProjectManager ProjectManager { get; set; }
         public IClientManager ClientManager { get; set; }
 
+        // GET api/Projects
+        //This function return the list of all project.
+         [System.Web.Http.HttpGet]
+        public List<Project> GetProjects()
+        {
+            return ProjectManager.GetAllProjects();
+        }
+
+        //Post api/Project
+        [System.Web.Http.HttpPost]
+         public int PostProject(Project project)
+         {
+             return -1;
+         }
         public ProjectRessource PostRessource([Bind(Include = "ProjectID,RessourceID,Quantite,Note")]ProjectRessource ProjectRessource)
         {
             if (ModelState.IsValid)
@@ -40,12 +54,6 @@ namespace p7cSarlWF.Controllers.Api
                 return ProjectRessource;
             }
             return null;
-        }
-
-        // GET api/Comment
-        public List<Project> GetProjects()
-        {
-            return ProjectManager.GetAllProjects();
         }
 
         public ProjectsController()
