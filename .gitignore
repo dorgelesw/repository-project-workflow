@@ -198,8 +198,20 @@ FakesAssemblies/
 *.opt
 
 #Customize P7C project
+#p7cSarlWF
 workflow/p7cSarlWF/*.sln
 workflow/p7cSarlWF/p7cSarlWF/App_Data
 workflow/p7cSarlWF/p7cSarlWF/bin
 workflow/p7cSarlWF/p7cSarlWF/obj
+workflow/p7cSarlWF/p7cSarlWF/*.csproj
+
+#p7cSarlWF.Tests
+workflow/p7cSarlWF/p7cSarlWF.Tests/App_Data
+workflow/p7cSarlWF/p7cSarlWF.Tests/bin
+workflow/p7cSarlWF/p7cSarlWF.Tests/obj
+
+#Resources
+workflow/p7cSarlWF/Resources/App_Data
+workflow/p7cSarlWF/Resources/bin
+workflow/p7cSarlWF/Resources/obj
 

@@ -10,6 +10,10 @@ using System.Web.Mvc;
 
 namespace p7cSarlWF.Controllers.Api
 {
+    /// <summary>
+    /// Project controller API.
+    /// This class implement all the services associated to a project.
+    /// </summary>
     public class ProjectsController : ApiController
     {
         public IRessourceManager RessourceManager { get; set; }
@@ -18,19 +22,71 @@ namespace p7cSarlWF.Controllers.Api
         public IClientManager ClientManager { get; set; }
 
         // GET api/Projects
-        //This function return the list of all project.
-         [System.Web.Http.HttpGet]
-        public List<Project> GetProjects()
+        //This service return the list of all project wiithout filter.
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.Route("api/projects")]
+        public List<Project> getProjects()
         {
             return ProjectManager.GetAllProjects();
         }
 
-        //Post api/Project
+
+        /// <summary>
+        /// This service return a project by his knowing ID
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns name="Project"></returns>
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.Route("api/project/{Id:int}")]
+        public Project getProject(int Id)
+        {
+            return ProjectManager.GetProjectByID(Id);
+        }
+
+        //POST api/Project
+        //This service add a new project.
         [System.Web.Http.HttpPost]
-         public int PostProject(Project project)
-         {
-             return -1;
-         }
+        [System.Web.Http.Route("api/project")]
+        public Project postProject([Bind(Include = "ColorIdentifier,ParentID,PriorityID,StartDate,EndDate,ProjectLocation,ProjectBudget,ProjectDescription,ProjectFullName,ProjectShortName,ProjectManager,ProjectResponsible,ProjectStatus,ProjectUrl,ClientID")]Project Project)
+        {
+            if (ModelState.IsValid)
+            {
+                Project.CreatedAt = DateTime.Now;
+                Project.DeletedBy = 0;
+                Project.ProjectCreator = 1;
+                Project.ProjectPercentComplete = 0;
+                Project.ProjectStatus = 0;
+                Project.TaskCount = 0;
+                Project.UpdatedBy = 0;
+                Project.UpdatedDate = DateTime.Now;
+
+                Project = ProjectManager.SaveProject(Project);
+
+                return Project;
+            }
+            else
+                return null;
+        }
+
+        /// <summary>
+        /// This service update a project.
+        /// </summary>
+        /// <param name="Project"></param>
+        /// <returns></returns>
+        [System.Web.Http.HttpPut]
+        [System.Web.Http.Route("api/project")]
+        public Project putProject([Bind(Include = "ColorIdentifier,ParentID,PriorityID,StartDate,EndDate,ProjectLocation,ProjectBudget,ProjectDescription,ProjectFullName,ProjectShortName,ProjectManager,ProjectResponsible,ProjectStatus,ProjectUrl,ClientID")]Project Project)
+        {
+            if (ModelState.IsValid)
+            {
+                Project = ProjectManager.SaveProject(Project);
+
+                return Project;
+            }
+            else
+                return null;
+        }
+
         public ProjectRessource PostRessource([Bind(Include = "ProjectID,RessourceID,Quantite,Note")]ProjectRessource ProjectRessource)
         {
             if (ModelState.IsValid)

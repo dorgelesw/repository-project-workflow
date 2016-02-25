@@ -192,7 +192,7 @@ namespace p7cSarlWF.Controllers
 
 
                 //RessourceManager.SaveRessource(Ressource);
-                return RedirectToAction("TypeList");
+                //return RedirectToAction("TypeList");
                 return RedirectToAction("RessourceList", new { id = type.TypeRessourceID });
             }
 

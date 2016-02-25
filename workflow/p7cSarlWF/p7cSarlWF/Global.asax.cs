@@ -19,10 +19,9 @@ namespace p7cSarlWF
         void Application_Start(object sender, EventArgs e)
         {
 
-            // Code qui s’exécute au démarrage de l’application
+            // Run main program when the application start.
 
             Database.SetInitializer<WorkFlowContext>(new WorkFlowContextInitializer());
-
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
